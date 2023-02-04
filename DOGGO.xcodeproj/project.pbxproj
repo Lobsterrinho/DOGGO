@@ -21,7 +21,7 @@
 		BA52CA56297B36540052C38C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA55297B36540052C38C /* ProfileModel.swift */; };
 		BA52CA60297D57910052C38C /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */; };
 		BA52CA62297D57FE0052C38C /* TaskDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */; };
-		BA52CA65297D60E30052C38C /* DOGGO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA63297D60E30052C38C /* DOGGO.xcdatamodeld */; };
+		BA52CA65297D60E30052C38C /* Reminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */; };
 		BA5E2866298123E20039A881 /* JSONNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E2865298123E20039A881 /* JSONNetworkService.swift */; };
 		BA5E2869298125F30039A881 /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E2868298125F20039A881 /* DogModel.swift */; };
 		BA5E286C29817AD50039A881 /* PrototypeCollectionCellDogs.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5E286B29817AD50039A881 /* PrototypeCollectionCellDogs.xib */; };
@@ -30,6 +30,7 @@
 		BA8EA4A1298ACB350071594D /* RepeatOptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */; };
 		BA8EA4A4298ACBC90071594D /* PrototypeOptionsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */; };
 		BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4A5298ACC390071594D /* PrototypeOptionsTableCell.swift */; };
+		BA8EA4C9298E72970071594D /* RemindersCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */; };
 		BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EF79F2971B44E00EB6AE9 /* AppDelegate.swift */; };
 		BA8EF7A22971B44E00EB6AE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EF7A12971B44E00EB6AE9 /* SceneDelegate.swift */; };
 		BA8EF7AC2971B45000EB6AE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8EF7AB2971B45000EB6AE9 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepeatOptionVC.xib; sourceTree = "<group>"; };
 		BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeOptionsTableCell.xib; sourceTree = "<group>"; };
 		BA8EA4A5298ACC390071594D /* PrototypeOptionsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeOptionsTableCell.swift; sourceTree = "<group>"; };
+		BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersCoreDataService.swift; sourceTree = "<group>"; };
 		BA8EF79C2971B44E00EB6AE9 /* DOGGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOGGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8EF79F2971B44E00EB6AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA8EF7A12971B44E00EB6AE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,15 @@
 			path = PrototypeOptionsTableCell;
 			sourceTree = "<group>";
 		};
+		BA8EA4C7298E725A0071594D /* CoreData Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */,
+				BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */,
+			);
+			path = "CoreData Reminders";
+			sourceTree = "<group>";
+		};
 		BA8EF7932971B44E00EB6AE9 = {
 			isa = PBXGroup;
 			children = (
@@ -249,7 +260,7 @@
 				BA8EF7AB2971B45000EB6AE9 /* Assets.xcassets */,
 				BA8EF7AD2971B45000EB6AE9 /* LaunchScreen.storyboard */,
 				BA8EF7B02971B45000EB6AE9 /* Info.plist */,
-				BA52CA63297D60E30052C38C /* DOGGO.xcdatamodeld */,
+				BA8EA4C7298E725A0071594D /* CoreData Reminders */,
 				BA8EF7E12972076900EB6AE9 /* CoreDataModels */,
 				BA8EF7D4297205B800EB6AE9 /* ViewControllers */,
 				BA8EF7D22972058A00EB6AE9 /* Extensions */,
@@ -469,13 +480,14 @@
 				BA8EF7DC297206FF00EB6AE9 /* PrototypeCellReminders.swift in Sources */,
 				BA28C6422983B54F00FAEDF9 /* UITextField Extension.swift in Sources */,
 				BA8EF7D02971F64200EB6AE9 /* UIColorExtension.swift in Sources */,
-				BA52CA65297D60E30052C38C /* DOGGO.xcdatamodeld in Sources */,
+				BA52CA65297D60E30052C38C /* Reminders.xcdatamodeld in Sources */,
 				BA5E286E29817AE60039A881 /* PrototypeCollectionCellDogs.swift in Sources */,
 				BA8EF7CC2971BF1000EB6AE9 /* DogsVC.swift in Sources */,
 				BA394BFE29882AF3008C66FC /* PrototypeDetailsTableCell.swift in Sources */,
 				BA8EA49F298ACAFB0071594D /* RepeatOptionVC.swift in Sources */,
 				BA8EF7B72971B76400EB6AE9 /* TasksVC.swift in Sources */,
 				BA5E2869298125F30039A881 /* DogModel.swift in Sources */,
+				BA8EA4C9298E72970071594D /* RemindersCoreDataService.swift in Sources */,
 				BA8EF7A22971B44E00EB6AE9 /* SceneDelegate.swift in Sources */,
 				BA8EF7D7297206B000EB6AE9 /* PrototypeCellTasks.swift in Sources */,
 				BA394C132988EA59008C66FC /* PrototypePickerTableCell.swift in Sources */,
@@ -692,13 +704,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BA52CA63297D60E30052C38C /* DOGGO.xcdatamodeld */ = {
+		BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				BA52CA64297D60E30052C38C /* DOGGO.xcdatamodel */,
 			);
 			currentVersion = BA52CA64297D60E30052C38C /* DOGGO.xcdatamodel */;
-			path = DOGGO.xcdatamodeld;
+			path = Reminders.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

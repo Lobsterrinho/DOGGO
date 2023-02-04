@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol RepeatOptionVCDelegate {
+    func repeatOptionDidSelect(option: String)
+}
+
 final class RepeatOptionVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView! {
@@ -16,7 +20,10 @@ final class RepeatOptionVC: UIViewController {
         }
     }
     
+    var delegate: RepeatOptionVCDelegate?
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         registerCell()
     }
     
@@ -42,6 +49,11 @@ extension RepeatOptionVC: UITableViewDelegate {
         return 45
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? PrototypeOptionsTableCell
+        delegate?.repeatOptionDidSelect(option: cell?.optionNameLabel.text ?? "Some error")
+        dismiss(animated: true)
+    }
 }
 
 extension RepeatOptionVC {

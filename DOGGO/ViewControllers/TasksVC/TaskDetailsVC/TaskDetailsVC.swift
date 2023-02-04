@@ -32,11 +32,11 @@ extension TaskDetailsVC {
     
     private func setupBarItem() {
         navigationItem.title = "Details"
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addDidTap))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    @objc private func addDidTap() {
+    @objc private func saveDidTap() {
         
         navigationController?.popViewController(animated: true)
     }
@@ -98,9 +98,10 @@ extension TaskDetailsVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as? PrototypePickerTableCell
         switch indexPath {
-        case [1, 0]: openDateAlert(style: .date)
-        case [1, 1]: openDateAlert(style: .time)
+        case [1, 0]: openDateAlert(style: .date, label: cell?.optionValueLabel ?? UILabel())
+        case [1, 1]: openDateAlert(style: .time, label: cell?.optionValueLabel ?? UILabel())
         default: print("Some error")
         }
     }
@@ -108,7 +109,7 @@ extension TaskDetailsVC: UITableViewDelegate {
 
 extension TaskDetailsVC {
     
-    private func openDateAlert(style: UIDatePicker.Mode) {
+    private func openDateAlert(style: UIDatePicker.Mode, label: UILabel) {
         
         let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
         
@@ -128,7 +129,19 @@ extension TaskDetailsVC {
             datePicker.heightAnchor.constraint(equalToConstant: 160.0),
             datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20.0)
         ])
-        let okayButton = UIAlertAction(title: "OK", style: .default)
+        let okayButton = UIAlertAction(title: "OK", style: .default) { _ in
+            if datePicker.datePickerMode == .date {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+                let dateString = dateFormatter.string(from: datePicker.date)
+                label.text = dateString
+            } else {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "kk:mm"
+                let dateString = dateFormatter.string(from: datePicker.date)
+                label.text = dateString
+            }
+        }
         alert.addAction(okayButton)
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(cancelButton)

@@ -9,6 +9,8 @@ import UIKit
 
 final class ReminderDetailsVC: UIViewController {
     
+    var selectedOption: String = ""
+    
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -32,6 +34,12 @@ extension ReminderDetailsVC {
     
     func setNavigationItem() {
         navigationItem.title = "Deteils"
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    @objc private func saveDidTap() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func registerCell() {
@@ -68,6 +76,9 @@ extension ReminderDetailsVC: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
             cell?.setupNameLabel(indexPath: indexPath)
+            if indexPath == [2, 0] {
+                cell?.optionValueLabel.text = selectedOption
+            }
             return cell ?? UITableViewCell()
         }
     }
@@ -93,20 +104,26 @@ extension ReminderDetailsVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
+        let cell = tableView.cellForRow(at: indexPath) as? PrototypePickerTableCell
         switch indexPath {
-        case [1, 0]: openDateAlert(style: .date)
-        case [1, 1]: openDateAlert(style: .time)
-        case [2, 0]: openRepeatOptions()
+        case [1, 0]: openDateAlert(style: .date, label: cell?.optionValueLabel ?? UILabel())
+        case [1, 1]: openDateAlert(style: .time, label: cell?.optionValueLabel ?? UILabel())
+        case [2, 0]: openRepeatOptions(); //cell?.optionValueLabel.text = selectedOption
         default:
             print("Some error")
         }
     }
 }
 
-extension ReminderDetailsVC {
+extension ReminderDetailsVC: RepeatOptionVCDelegate {
     
-    private func openDateAlert(style: UIDatePicker.Mode/*, label: UILabel*/) {
+    func repeatOptionDidSelect(option: String) {
+        selectedOption = option
+        tableView.reloadData()
+    }
+    
+    
+    private func openDateAlert(style: UIDatePicker.Mode, label: UILabel) {
         
         let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
         
@@ -127,10 +144,17 @@ extension ReminderDetailsVC {
             datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20.0)
         ])
         let okayButton = UIAlertAction(title: "OK", style: .default) { _ in
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "dd.MM.yyyy"
-//            let dateString = dateFormatter.string(from: datePicker.date)
-//            label.text = dateString
+            if datePicker.datePickerMode == .date {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+                let dateString = dateFormatter.string(from: datePicker.date)
+                label.text = dateString
+            } else {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "kk:mm"
+                let dateString = dateFormatter.string(from: datePicker.date)
+                label.text = dateString
+            }
         }
         alert.addAction(okayButton)
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
@@ -142,7 +166,10 @@ extension ReminderDetailsVC {
     
     private func openRepeatOptions() {
         let repeatOptionVC = RepeatOptionVC(nibName: "\(RepeatOptionVC.self)", bundle: nil)
+        repeatOptionVC.delegate = self
         present(repeatOptionVC, animated: true)
     }
+    
+    
     
 }

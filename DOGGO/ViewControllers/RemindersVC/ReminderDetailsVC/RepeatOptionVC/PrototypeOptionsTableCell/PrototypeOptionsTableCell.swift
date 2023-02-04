@@ -9,7 +9,7 @@ import UIKit
 
 final class PrototypeOptionsTableCell: UITableViewCell {
     
-    @IBOutlet private weak var optionNameLabel: UILabel!
+    @IBOutlet weak var optionNameLabel: UILabel!
     
     private let nameOptionArray: [String] = [
         "Never",

@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "Lobster_icon_for_ios_app_of_a_cartoon_smiling_corgi_on_a_yellow_9e19bb0d-b088-4aad-8d58-1636dbaf177f.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

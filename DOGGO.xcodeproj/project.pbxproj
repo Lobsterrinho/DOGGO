@@ -21,7 +21,6 @@
 		BA52CA56297B36540052C38C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA55297B36540052C38C /* ProfileModel.swift */; };
 		BA52CA60297D57910052C38C /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */; };
 		BA52CA62297D57FE0052C38C /* TaskDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */; };
-		BA52CA65297D60E30052C38C /* Reminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */; };
 		BA5E2866298123E20039A881 /* JSONNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E2865298123E20039A881 /* JSONNetworkService.swift */; };
 		BA5E2869298125F30039A881 /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E2868298125F20039A881 /* DogModel.swift */; };
 		BA5E286C29817AD50039A881 /* PrototypeCollectionCellDogs.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5E286B29817AD50039A881 /* PrototypeCollectionCellDogs.xib */; };
@@ -30,7 +29,7 @@
 		BA8EA4A1298ACB350071594D /* RepeatOptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */; };
 		BA8EA4A4298ACBC90071594D /* PrototypeOptionsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */; };
 		BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4A5298ACC390071594D /* PrototypeOptionsTableCell.swift */; };
-		BA8EA4C9298E72970071594D /* RemindersCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */; };
+		BA8EA4C9298E72970071594D /* RemindersCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4C8298E72970071594D /* RemindersCoreData.swift */; };
 		BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EF79F2971B44E00EB6AE9 /* AppDelegate.swift */; };
 		BA8EF7A22971B44E00EB6AE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EF7A12971B44E00EB6AE9 /* SceneDelegate.swift */; };
 		BA8EF7AC2971B45000EB6AE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8EF7AB2971B45000EB6AE9 /* Assets.xcassets */; };
@@ -50,6 +49,10 @@
 		BA8EF7DE2972070700EB6AE9 /* PrototypeCellReminders.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EF7DD2972070700EB6AE9 /* PrototypeCellReminders.xib */; };
 		BA8EF7E02972072600EB6AE9 /* PrototypeCellTasks.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EF7DF2972072600EB6AE9 /* PrototypeCellTasks.xib */; };
 		BADDD8232982BD7900E93391 /* ObtainImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADDD8222982BD7900E93391 /* ObtainImage.swift */; };
+		BADF10F0298E854A004F5099 /* Reminder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF10EE298E8549004F5099 /* Reminder+CoreDataClass.swift */; };
+		BADF10F1298E854A004F5099 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF10EF298E8549004F5099 /* Reminder+CoreDataProperties.swift */; };
+		BAE9B5BE298FCC2E000578FA /* RemindersCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4CE298E7ECE0071594D /* RemindersCoreData.xcdatamodeld */; };
+		BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9B5BF2990488E000578FA /* ReminderModel.swift */; };
 		BAF481F1297E90A100F009E3 /* TaskCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */; };
 		BAF481F3297E942800F009E3 /* PrototypeCalendarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF481F2297E942800F009E3 /* PrototypeCalendarCollectionCell.xib */; };
 		BAF481F5297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF481F4297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift */; };
@@ -70,7 +73,6 @@
 		BA52CA55297B36540052C38C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsVC.swift; sourceTree = "<group>"; };
 		BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDetailsVC.xib; sourceTree = "<group>"; };
-		BA52CA64297D60E30052C38C /* DOGGO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOGGO.xcdatamodel; sourceTree = "<group>"; };
 		BA5E2865298123E20039A881 /* JSONNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNetworkService.swift; sourceTree = "<group>"; };
 		BA5E2868298125F20039A881 /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
 		BA5E286B29817AD50039A881 /* PrototypeCollectionCellDogs.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCollectionCellDogs.xib; sourceTree = "<group>"; };
@@ -79,7 +81,8 @@
 		BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepeatOptionVC.xib; sourceTree = "<group>"; };
 		BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeOptionsTableCell.xib; sourceTree = "<group>"; };
 		BA8EA4A5298ACC390071594D /* PrototypeOptionsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeOptionsTableCell.swift; sourceTree = "<group>"; };
-		BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersCoreDataService.swift; sourceTree = "<group>"; };
+		BA8EA4C8298E72970071594D /* RemindersCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersCoreData.swift; sourceTree = "<group>"; };
+		BA8EA4CF298E7ECE0071594D /* RemindersCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RemindersCoreData.xcdatamodel; sourceTree = "<group>"; };
 		BA8EF79C2971B44E00EB6AE9 /* DOGGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOGGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8EF79F2971B44E00EB6AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA8EF7A12971B44E00EB6AE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +104,9 @@
 		BA8EF7DD2972070700EB6AE9 /* PrototypeCellReminders.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCellReminders.xib; sourceTree = "<group>"; };
 		BA8EF7DF2972072600EB6AE9 /* PrototypeCellTasks.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCellTasks.xib; sourceTree = "<group>"; };
 		BADDD8222982BD7900E93391 /* ObtainImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainImage.swift; sourceTree = "<group>"; };
+		BADF10EE298E8549004F5099 /* Reminder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BADF10EF298E8549004F5099 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BAE9B5BF2990488E000578FA /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 		BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarCollectionView.swift; sourceTree = "<group>"; };
 		BAF481F2297E942800F009E3 /* PrototypeCalendarCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCalendarCollectionCell.xib; sourceTree = "<group>"; };
 		BAF481F4297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCalendarCollectionCell.swift; sourceTree = "<group>"; };
@@ -230,8 +236,9 @@
 		BA8EA4C7298E725A0071594D /* CoreData Reminders */ = {
 			isa = PBXGroup;
 			children = (
-				BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */,
-				BA8EA4C8298E72970071594D /* RemindersCoreDataService.swift */,
+				BA8EF7E12972076900EB6AE9 /* CoreDataModels */,
+				BA8EA4C8298E72970071594D /* RemindersCoreData.swift */,
+				BA8EA4CE298E7ECE0071594D /* RemindersCoreData.xcdatamodeld */,
 			);
 			path = "CoreData Reminders";
 			sourceTree = "<group>";
@@ -261,7 +268,6 @@
 				BA8EF7AD2971B45000EB6AE9 /* LaunchScreen.storyboard */,
 				BA8EF7B02971B45000EB6AE9 /* Info.plist */,
 				BA8EA4C7298E725A0071594D /* CoreData Reminders */,
-				BA8EF7E12972076900EB6AE9 /* CoreDataModels */,
 				BA8EF7D4297205B800EB6AE9 /* ViewControllers */,
 				BA8EF7D22972058A00EB6AE9 /* Extensions */,
 				BA5E2864298123AD0039A881 /* NetworkServices */,
@@ -291,6 +297,7 @@
 				BA8EF7DA297206E000EB6AE9 /* PrototypeCellReminders */,
 				BA8EF7BE2971B8BA00EB6AE9 /* RemindersVC.swift */,
 				BA8EF7C62971B93300EB6AE9 /* RemindersVC.xib */,
+				BAE9B5BF2990488E000578FA /* ReminderModel.swift */,
 			);
 			path = RemindersVC;
 			sourceTree = "<group>";
@@ -366,6 +373,8 @@
 		BA8EF7E12972076900EB6AE9 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				BADF10EE298E8549004F5099 /* Reminder+CoreDataClass.swift */,
+				BADF10EF298E8549004F5099 /* Reminder+CoreDataProperties.swift */,
 			);
 			path = CoreDataModels;
 			sourceTree = "<group>";
@@ -465,10 +474,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE9B5BE298FCC2E000578FA /* RemindersCoreData.xcdatamodeld in Sources */,
 				BA5E2866298123E20039A881 /* JSONNetworkService.swift in Sources */,
 				BA8EF7BF2971B8BA00EB6AE9 /* RemindersVC.swift in Sources */,
 				BAF481F5297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift in Sources */,
 				BA28C6462983B82F00FAEDF9 /* DogDetailsVC.swift in Sources */,
+				BADF10F0298E854A004F5099 /* Reminder+CoreDataClass.swift in Sources */,
+				BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */,
 				BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */,
 				BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */,
 				BA28C64B2983E01800FAEDF9 /* DogDetailsPrototypeTableCell.swift in Sources */,
@@ -480,19 +492,19 @@
 				BA8EF7DC297206FF00EB6AE9 /* PrototypeCellReminders.swift in Sources */,
 				BA28C6422983B54F00FAEDF9 /* UITextField Extension.swift in Sources */,
 				BA8EF7D02971F64200EB6AE9 /* UIColorExtension.swift in Sources */,
-				BA52CA65297D60E30052C38C /* Reminders.xcdatamodeld in Sources */,
 				BA5E286E29817AE60039A881 /* PrototypeCollectionCellDogs.swift in Sources */,
 				BA8EF7CC2971BF1000EB6AE9 /* DogsVC.swift in Sources */,
 				BA394BFE29882AF3008C66FC /* PrototypeDetailsTableCell.swift in Sources */,
 				BA8EA49F298ACAFB0071594D /* RepeatOptionVC.swift in Sources */,
 				BA8EF7B72971B76400EB6AE9 /* TasksVC.swift in Sources */,
 				BA5E2869298125F30039A881 /* DogModel.swift in Sources */,
-				BA8EA4C9298E72970071594D /* RemindersCoreDataService.swift in Sources */,
+				BA8EA4C9298E72970071594D /* RemindersCoreData.swift in Sources */,
 				BA8EF7A22971B44E00EB6AE9 /* SceneDelegate.swift in Sources */,
 				BA8EF7D7297206B000EB6AE9 /* PrototypeCellTasks.swift in Sources */,
 				BA394C132988EA59008C66FC /* PrototypePickerTableCell.swift in Sources */,
 				BA52CA60297D57910052C38C /* TaskDetailsVC.swift in Sources */,
 				BA394BFA29881042008C66FC /* ReminderDetailsVC.swift in Sources */,
+				BADF10F1298E854A004F5099 /* Reminder+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,13 +716,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BA52CA63297D60E30052C38C /* Reminders.xcdatamodeld */ = {
+		BA8EA4CE298E7ECE0071594D /* RemindersCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				BA52CA64297D60E30052C38C /* DOGGO.xcdatamodel */,
+				BA8EA4CF298E7ECE0071594D /* RemindersCoreData.xcdatamodel */,
 			);
-			currentVersion = BA52CA64297D60E30052C38C /* DOGGO.xcdatamodel */;
-			path = Reminders.xcdatamodeld;
+			currentVersion = BA8EA4CF298E7ECE0071594D /* RemindersCoreData.xcdatamodel */;
+			path = RemindersCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

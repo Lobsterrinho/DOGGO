@@ -65,11 +65,7 @@ extension TaskDetailsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
-            switch indexPath.row {
-            case 0: cell?.setupTextField(placeholder: "Title")
-            case 1: cell?.setupTextField(placeholder: "Notes")
-            default: break
-            }
+            cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
             return cell ?? UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell

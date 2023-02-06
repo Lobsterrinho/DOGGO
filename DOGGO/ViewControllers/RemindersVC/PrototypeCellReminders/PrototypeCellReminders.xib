@@ -18,15 +18,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of the Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZv-Jt-xcc">
-                        <rect key="frame" x="20" y="8" width="353" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <rect key="frame" x="20" y="8" width="353" height="40.666666666666664"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text=" date, time, repeat?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flz-nQ-fF1">
-                        <rect key="frame" x="20" y="46" width="353" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <color key="textColor" systemColor="systemGray2Color"/>
+                        <rect key="frame" x="20" y="50.666666666666664" width="353" height="19.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -35,7 +35,7 @@
                     <constraint firstAttribute="trailing" secondItem="iZv-Jt-xcc" secondAttribute="trailing" constant="20" symbolic="YES" id="6W0-4C-CX6"/>
                     <constraint firstAttribute="trailing" secondItem="flz-nQ-fF1" secondAttribute="trailing" constant="20" symbolic="YES" id="Cez-9E-P6I"/>
                     <constraint firstItem="flz-nQ-fF1" firstAttribute="leading" secondItem="PjD-40-wym" secondAttribute="leading" constant="20" symbolic="YES" id="JJf-7P-glc"/>
-                    <constraint firstItem="flz-nQ-fF1" firstAttribute="top" secondItem="iZv-Jt-xcc" secondAttribute="bottom" constant="5" id="PBr-yd-G8l"/>
+                    <constraint firstItem="flz-nQ-fF1" firstAttribute="top" secondItem="iZv-Jt-xcc" secondAttribute="bottom" constant="2" id="PBr-yd-G8l"/>
                     <constraint firstItem="iZv-Jt-xcc" firstAttribute="leading" secondItem="PjD-40-wym" secondAttribute="leading" constant="20" symbolic="YES" id="SHL-lW-JsU"/>
                     <constraint firstItem="iZv-Jt-xcc" firstAttribute="top" secondItem="PjD-40-wym" secondAttribute="top" constant="8" id="qz5-oC-Ssx"/>
                 </constraints>
@@ -48,8 +48,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -27,9 +27,6 @@ class PrototypePickerTableCell: UITableViewCell {
         }
     }
     
-//    func setOptionValue(value: String) {
-//
-//    }
     
 }
 

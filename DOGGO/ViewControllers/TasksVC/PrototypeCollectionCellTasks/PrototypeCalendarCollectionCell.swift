@@ -10,6 +10,6 @@ import UIKit
 
 final class PrototypeCalendarCollectionCell: UICollectionViewCell {
  
-    @IBOutlet private weak var numbeOfDayLabel: UILabel!
+    @IBOutlet weak var numbeOfDayLabel: UILabel!
     
 }

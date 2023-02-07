@@ -53,6 +53,10 @@ extension DogsVC {
     
     private func setupBarItem() {
         navigationItem.title = "Dogs"
+        setupSearchBar()
+    }
+    
+    private func setupSearchBar() {
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -105,8 +109,6 @@ extension DogsVC: UICollectionViewDataSource {
 extension DogsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dogDetailsVC = DogDetailsVC(nibName: "\(DogDetailsVC.self)", bundle: nil)
-
-        //        let dog = dogs[indexPath.row]
         let dog: Dog
         
         if isFilteringNow() {
@@ -121,6 +123,7 @@ extension DogsVC: UICollectionViewDelegate {
         }
         
         dogDetailsVC.dog = dog
+        dogDetailsVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(dogDetailsVC, animated: true)
     }
 }

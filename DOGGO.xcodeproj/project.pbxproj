@@ -25,6 +25,7 @@
 		BA5E2869298125F30039A881 /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E2868298125F20039A881 /* DogModel.swift */; };
 		BA5E286C29817AD50039A881 /* PrototypeCollectionCellDogs.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5E286B29817AD50039A881 /* PrototypeCollectionCellDogs.xib */; };
 		BA5E286E29817AE60039A881 /* PrototypeCollectionCellDogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E286D29817AE60039A881 /* PrototypeCollectionCellDogs.swift */; };
+		BA883E4F29926D1000D55329 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA883E4E29926D1000D55329 /* CalendarHelper.swift */; };
 		BA8EA49F298ACAFB0071594D /* RepeatOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA49E298ACAFB0071594D /* RepeatOptionVC.swift */; };
 		BA8EA4A1298ACB350071594D /* RepeatOptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */; };
 		BA8EA4A4298ACBC90071594D /* PrototypeOptionsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */; };
@@ -77,6 +78,7 @@
 		BA5E2868298125F20039A881 /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
 		BA5E286B29817AD50039A881 /* PrototypeCollectionCellDogs.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCollectionCellDogs.xib; sourceTree = "<group>"; };
 		BA5E286D29817AE60039A881 /* PrototypeCollectionCellDogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCollectionCellDogs.swift; sourceTree = "<group>"; };
+		BA883E4E29926D1000D55329 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		BA8EA49E298ACAFB0071594D /* RepeatOptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatOptionVC.swift; sourceTree = "<group>"; };
 		BA8EA4A0298ACB350071594D /* RepeatOptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepeatOptionVC.xib; sourceTree = "<group>"; };
 		BA8EA4A3298ACBC90071594D /* PrototypeOptionsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeOptionsTableCell.xib; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				BA52CA5C297D57590052C38C /* TaskDetailsVC */,
 				BA8EF7C82971B93D00EB6AE9 /* TasksVC.xib */,
 				BA8EF7B62971B76400EB6AE9 /* TasksVC.swift */,
+				BA883E4E29926D1000D55329 /* CalendarHelper.swift */,
 				BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */,
 			);
 			path = TasksVC;
@@ -483,6 +486,7 @@
 				BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */,
 				BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */,
 				BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */,
+				BA883E4F29926D1000D55329 /* CalendarHelper.swift in Sources */,
 				BA28C64B2983E01800FAEDF9 /* DogDetailsPrototypeTableCell.swift in Sources */,
 				BAF481F1297E90A100F009E3 /* TaskCalendarCollectionView.swift in Sources */,
 				BA8EF7C12971B8D300EB6AE9 /* ProfileVC.swift in Sources */,

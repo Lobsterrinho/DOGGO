@@ -9,9 +9,11 @@ import UIKit
 
 final class ReminderDetailsVC: UIViewController {
     
-    private var selectedOption: String = ""
-    
+    var reminderCoreData = Reminder()
+    var isEdit: Bool = false
     private var reminder = ReminderModel()
+    
+    private var VC = RemindersVC()
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -35,14 +37,13 @@ extension ReminderDetailsVC {
     
     func setNavigationItem() {
         navigationItem.title = "Deteils"
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
         
-        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     @objc private func saveDidTap() {
         saveData(reminder: reminder)
-        
         navigationController?.popViewController(animated: true)
     }
     
@@ -55,17 +56,29 @@ extension ReminderDetailsVC {
     }
     
     private func saveData(reminder: ReminderModel) {
+        
+        
         let context = RemindersCoreData.context
-        context.perform {
-            let newReminder = Reminder(context: context)
+        context.perform { [self] in
             
-            newReminder.id = UUID()
-            newReminder.title = reminder.title
-            newReminder.body = reminder.body
-            newReminder.date = reminder.date
-            newReminder.time = reminder.time
-            newReminder.repeatOption = reminder.repeatOption
-            RemindersCoreData.saveContext()
+            if self.isEdit == false {
+                let newReminder = Reminder(context: context)
+                
+                newReminder.id = UUID()
+                newReminder.title = reminder.title
+                newReminder.body = reminder.body
+                newReminder.date = reminder.date
+                newReminder.time = reminder.time
+                newReminder.repeatOption = reminder.repeatOption
+                RemindersCoreData.saveContext()
+            } else {
+                reminderCoreData.title = reminder.title
+                reminderCoreData.body = reminder.body
+                reminderCoreData.date = reminder.date
+                reminderCoreData.time = reminder.time
+                reminderCoreData.repeatOption = reminder.repeatOption
+                RemindersCoreData.saveContext()
+            }
         }
     }
     
@@ -118,6 +131,20 @@ extension ReminderDetailsVC {
         present(repeatOptionVC, animated: true)
     }
     
+    private func stringFromDate(dateType: Date, reminder: Reminder, completion: @escaping (String) -> Void) {
+        if dateType == reminder.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.string(from: dateType)
+            completion(dateString)
+        } else if dateType == reminder.time {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "kk:mm"
+            let timeString = dateFormatter.string(from: dateType)
+            completion(timeString)
+        }
+    }
+    
 }
 
 extension ReminderDetailsVC: UITableViewDataSource {
@@ -135,19 +162,51 @@ extension ReminderDetailsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
-            cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
-            cell?.delegateTitle = self
-            cell?.delegateBody = self
+            if isEdit {
+                cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+                cell?.delegateTitle = self
+                cell?.delegateBody = self
+                switch indexPath {
+                case [0, 0]: cell?.textField.text = reminderCoreData.title
+                case [0, 1]: cell?.textField.text = reminderCoreData.body
+                default: print("Some error")
+                }
+            } else {
+                cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+                cell?.delegateTitle = self
+                cell?.delegateBody = self
+            }
             return cell ?? UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
-            cell?.setupNameLabel(indexPath: indexPath)
-            if indexPath == [2, 0] {
-                cell?.optionValueLabel.text = reminder.repeatOption
+            
+            if isEdit {
+                cell?.setupNameLabel(indexPath: indexPath)
+                if indexPath == [2, 0] {
+                    cell?.optionValueLabel.text = reminder.repeatOption
+                }
+                switch indexPath {
+                case [1, 0]: VC.stringFromDate(dateType: reminderCoreData.date ?? Date(), reminder: reminderCoreData, completion: { date in
+                    cell?.optionValueLabel.text = date
+                })
+                case [1, 1]: VC.stringFromDate(dateType: reminderCoreData.time ?? Date(), reminder: reminderCoreData, completion: { time in
+                    cell?.optionValueLabel.text = time
+                })
+                case [2, 0]: cell?.optionValueLabel.text = reminderCoreData.repeatOption
+                default: print("Some error")
+                }
+            } else {
+                cell?.setupNameLabel(indexPath: indexPath)
+                if indexPath == [2, 0] {
+                    cell?.optionValueLabel.text = reminder.repeatOption
+                }
             }
             return cell ?? UITableViewCell()
         }
     }
+    
+    
+    
 }
 
 extension ReminderDetailsVC: UITableViewDelegate {
@@ -198,7 +257,6 @@ extension ReminderDetailsVC: PrototypeDetailsTableCellTitleDelegate {
     func saveTitle(title: String) {
         reminder.title = title
     }
-    
 }
 
 extension ReminderDetailsVC: PrototypeDetailsTableCellBodyDelegate {
@@ -206,5 +264,4 @@ extension ReminderDetailsVC: PrototypeDetailsTableCellBodyDelegate {
     func saveBody(body: String) {
         reminder.body = body
     }
-    
 }

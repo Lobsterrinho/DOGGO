@@ -24,7 +24,7 @@
                             <constraint firstAttribute="height" constant="55" id="TB3-fV-hcw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="yes"/>
                     </textField>
                 </subviews>
                 <constraints>

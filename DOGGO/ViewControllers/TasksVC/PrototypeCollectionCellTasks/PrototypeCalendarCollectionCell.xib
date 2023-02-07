@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,32 +17,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="126" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6T-DR-9mH">
-                        <rect key="frame" x="48" y="30" width="30" height="47"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhF-Ky-9Y6">
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="107"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                 <constraints>
-                    <constraint firstItem="C6T-DR-9mH" firstAttribute="top" secondItem="tzj-eu-NJj" secondAttribute="top" constant="30" id="0uM-ly-9aK"/>
-                    <constraint firstAttribute="bottom" secondItem="C6T-DR-9mH" secondAttribute="bottom" constant="30" id="2cU-XG-ce9"/>
-                    <constraint firstAttribute="trailing" secondItem="C6T-DR-9mH" secondAttribute="trailing" constant="48" id="6Bd-TC-2f2"/>
-                    <constraint firstItem="C6T-DR-9mH" firstAttribute="leading" secondItem="tzj-eu-NJj" secondAttribute="leading" constant="48" id="I7Q-2Q-cwj"/>
+                    <constraint firstAttribute="trailing" secondItem="BhF-Ky-9Y6" secondAttribute="trailing" id="4VA-Fh-iuw"/>
+                    <constraint firstAttribute="bottom" secondItem="BhF-Ky-9Y6" secondAttribute="bottom" id="LGh-7Y-pwn"/>
+                    <constraint firstItem="BhF-Ky-9Y6" firstAttribute="leading" secondItem="tzj-eu-NJj" secondAttribute="leading" id="Nkb-qG-4OS"/>
+                    <constraint firstItem="BhF-Ky-9Y6" firstAttribute="top" secondItem="tzj-eu-NJj" secondAttribute="top" id="xeG-8e-rqU"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="126" height="107"/>
             <connections>
-                <outlet property="backgroundView" destination="tzj-eu-NJj" id="j4f-up-RgE"/>
-                <outlet property="numbeOfDayLabel" destination="C6T-DR-9mH" id="rhY-cc-HQG"/>
+                <outlet property="numbeOfDayLabel" destination="BhF-Ky-9Y6" id="MpQ-Z3-tEo"/>
             </connections>
             <point key="canvasLocation" x="175.57251908396947" y="33.450704225352112"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

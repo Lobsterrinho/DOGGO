@@ -13,6 +13,7 @@ final class RemindersVC: UIViewController {
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
+            tableView.delegate = self
         }
     }
     
@@ -33,9 +34,6 @@ final class RemindersVC: UIViewController {
         super.viewWillAppear(animated)
         loadData()
     }
-    
-    
-    
 }
 
 extension RemindersVC {
@@ -49,6 +47,7 @@ extension RemindersVC {
     
     @objc private func addDidTap() {
         let reminderDetailsVC = ReminderDetailsVC(nibName: "\(ReminderDetailsVC.self)", bundle: nil)
+        reminderDetailsVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(reminderDetailsVC, animated: true)
     }
     
@@ -60,11 +59,23 @@ extension RemindersVC {
     private func loadData() {
         let request = Reminder.fetchRequest()
         let fetchedData = try? RemindersCoreData.context.fetch(request)
-        print(fetchedData)
-        remindersList = fetchedData ?? []
+        let sortedFetches = fetchedData?.sorted { left, right in
+            return left.date ?? Date() < right.date ?? Date()
+        }
+        remindersList = sortedFetches ?? []
+        tableView.reloadData()
     }
     
-    private func stringFromDate(dateType: Date, reminder: Reminder, completion: @escaping (String) -> Void) {
+    private func deleteData(indexPath: IndexPath) {
+        let context = RemindersCoreData.context
+        let reminder = remindersList[indexPath.row]
+        context.perform {
+            context.delete(reminder)
+            RemindersCoreData.saveContext()
+        }
+    }
+    
+    func stringFromDate(dateType: Date, reminder: Reminder, completion: @escaping (String) -> Void) {
         if dateType == reminder.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy"
@@ -76,41 +87,70 @@ extension RemindersVC {
             let timeString = dateFormatter.string(from: dateType)
             completion(timeString)
         }
-        
+    }
+    
+    
+}
+
+extension RemindersVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return remindersList.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeCellReminders.self)", for: indexPath) as? PrototypeCellReminders
+        let reminder = remindersList[indexPath.row]
+        var stringDate = String()
+        var stringTime = String()
+        var repeatOption = String()
+        if let date = reminder.date {
+            stringFromDate(dateType: date, reminder: reminder) { date in
+                stringDate = date
+            }
+        }
+        if let time = reminder.time {
+            stringFromDate(dateType: time, reminder: reminder) { time in
+                stringTime = ", " + time
+            }
+        }
+        if let repeatOptionNonOpt = reminder.repeatOption {
+            repeatOption = ", " + repeatOptionNonOpt
+        }
+        cell?.reminderTitleLable.text = reminder.title
+        cell?.dateTimeAndRepeatLable.text = "\(stringDate)\(stringTime)\(repeatOption)"
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        tableView.beginUpdates()
+        deleteData(indexPath: indexPath)
+        self.remindersList.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
 }
+
+
+
+extension RemindersVC: UITableViewDelegate {
     
-    extension RemindersVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let reminder = remindersList[indexPath.row]
+        let reminderDetailsVC = ReminderDetailsVC(nibName: "\(ReminderDetailsVC.self)", bundle: nil)
+        reminderDetailsVC.reminderCoreData = reminder
+        reminderDetailsVC.isEdit = true
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return remindersList.count
-        }
-        
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeCellReminders.self)", for: indexPath) as? PrototypeCellReminders
-            let reminder = remindersList[indexPath.row]
-            var stringDate = String()
-            var stringTime = String()
-            var repeatOption = String()
-            if let date = reminder.date {
-                stringFromDate(dateType: date, reminder: reminder) { date in
-                    stringDate = date
-                }
-            }
-            if let time = reminder.time {
-                stringFromDate(dateType: time, reminder: reminder) { time in
-                    stringTime = time
-                }
-            }
-            if let repeatOptionNonOpt = reminder.repeatOption {
-                repeatOption = repeatOptionNonOpt
-            }
-            cell?.reminderTitleLable.text = reminder.title
-            cell?.dateTimeAndRepeatLable.text = "\(stringDate), \(stringTime), \(repeatOption)"
-            return cell ?? UITableViewCell()
-        }
-        
-        
-        
+        reminderDetailsVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(reminderDetailsVC, animated: true)
     }
+    
+    
+    
+}

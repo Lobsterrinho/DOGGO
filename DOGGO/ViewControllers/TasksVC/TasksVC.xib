@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TasksVC" customModule="DOGGO" customModuleProvider="target">
             <connections>
+                <outlet property="calendarCollectionView" destination="3Hd-X4-5mc" id="cXp-s8-cmg"/>
+                <outlet property="monthLabel" destination="9KM-09-pNX" id="nEF-br-LED"/>
                 <outlet property="tasksTableView" destination="JgQ-fQ-sly" id="gDC-1L-h2R"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ziq-ou-iwH"/>
             </connections>
@@ -25,24 +27,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCs-wO-wJc">
-                    <rect key="frame" x="30" y="44" width="65" height="33"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="65" id="pCW-Tb-zcv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Left"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-RG-nEL">
-                    <rect key="frame" x="319" y="44" width="65" height="33"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="65" id="fJW-2P-Q0X"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Right"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KM-09-pNX">
                     <rect key="frame" x="180.66666666666666" y="44" width="53" height="30"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
@@ -99,13 +83,13 @@
                         <constraint firstAttribute="height" constant="48" id="kld-Wo-MFz"/>
                     </constraints>
                 </stackView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3Hd-X4-5mc">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3Hd-X4-5mc">
                     <rect key="frame" x="0.0" y="125" width="414" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="hE7-54-PfN"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1fX-vb-Kqt">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1fX-vb-Kqt">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -117,13 +101,9 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="3Hd-X4-5mc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1Ey-SI-jsi"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NpZ-RG-nEL" secondAttribute="trailing" constant="30" id="1pA-U7-QWz"/>
-                <constraint firstItem="NpZ-RG-nEL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="4wM-oa-H6W"/>
-                <constraint firstItem="nCs-wO-wJc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7f5-52-gCY"/>
                 <constraint firstItem="3Hd-X4-5mc" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8bz-nY-7Id"/>
-                <constraint firstItem="nCs-wO-wJc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="F3X-dR-wXd"/>
-                <constraint firstItem="ahX-wM-90y" firstAttribute="top" secondItem="nCs-wO-wJc" secondAttribute="bottom" id="KBC-3L-VEq"/>
                 <constraint firstItem="9KM-09-pNX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="OlK-zM-HtR"/>
+                <constraint firstItem="ahX-wM-90y" firstAttribute="top" secondItem="9KM-09-pNX" secondAttribute="bottom" constant="3" id="U5c-yM-pUD"/>
                 <constraint firstItem="ahX-wM-90y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="nI7-SP-1ge"/>
                 <constraint firstItem="9KM-09-pNX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pRe-4R-b8V"/>
                 <constraint firstItem="ahX-wM-90y" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vZM-69-lcy"/>

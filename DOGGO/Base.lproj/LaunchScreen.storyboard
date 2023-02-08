@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uhd-N1-jNh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="someimage" translatesAutoresizingMaskIntoConstraints="NO" id="uhd-N1-jNh">
                                 <rect key="frame" x="87" y="328" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uhd-N1-jNh" secondAttribute="height" multiplier="1:1" id="m4a-el-Bvd"/>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appIcon" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="someimage" width="341.33334350585938" height="341.33334350585938"/>
     </resources>
 </document>

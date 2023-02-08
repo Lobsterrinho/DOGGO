@@ -15,6 +15,7 @@ final class TasksVC: UIViewController {
         didSet {
             calendarCollectionView.delegate = self
             calendarCollectionView.dataSource = self
+            calendarCollectionView.collectionViewLayout = createLayout()
         }
     }
     @IBOutlet private weak var tasksTableView: UITableView! {
@@ -39,8 +40,8 @@ final class TasksVC: UIViewController {
         setWeekView()
         registrateCollectionCell()
         registerTableCell()
-        leftSwipeGesture()
-        rightSwipeGesture()
+//        leftSwipeGesture()
+//        rightSwipeGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +84,7 @@ extension TasksVC: UICollectionViewDataSource {
         
         return cell ?? UICollectionViewCell()
     }
+    
     
     
     
@@ -129,27 +131,27 @@ extension TasksVC: UITableViewDelegate {
 
 extension TasksVC {
     
-    private func leftSwipeGesture() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftGesture(_:)))
-        leftSwipe.direction = .left
-        calendarCollectionView.addGestureRecognizer(leftSwipe)
-    }
-    
-    @objc private func leftGesture(_ gesure: UISwipeGestureRecognizer) {
-        selectedDate = CalendarHelper().addDays(date: selectedDate, days: 7)
-        setWeekView()
-    }
-    
-    private func rightSwipeGesture() {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(rightGesture(_:)))
-        rightSwipe.direction = .right
-        calendarCollectionView.addGestureRecognizer(rightSwipe)
-    }
-    
-    @objc private func rightGesture(_ gesure: UISwipeGestureRecognizer) {
-        selectedDate = CalendarHelper().addDays(date: selectedDate, days: -7)
-        setWeekView()
-    }
+//    private func leftSwipeGesture() {
+//        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftGesture(_:)))
+//        leftSwipe.direction = .left
+//        calendarCollectionView.addGestureRecognizer(leftSwipe)
+//    }
+//
+//    @objc private func leftGesture(_ gesure: UISwipeGestureRecognizer) {
+//        selectedDate = CalendarHelper().addDays(date: selectedDate, days: 7)
+//        setWeekView()
+//    }
+//
+//    private func rightSwipeGesture() {
+//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(rightGesture(_:)))
+//        rightSwipe.direction = .right
+//        calendarCollectionView.addGestureRecognizer(rightSwipe)
+//    }
+//
+//    @objc private func rightGesture(_ gesure: UISwipeGestureRecognizer) {
+//        selectedDate = CalendarHelper().addDays(date: selectedDate, days: -7)
+//        setWeekView()
+//    }
     
     private func setupBarItem() {
         navigationItem.title = "Tasks"
@@ -175,10 +177,10 @@ extension TasksVC {
     func setWeekView() {
         totalSquares.removeAll()
         
-        var current = CalendarHelper().sundayForDate(date: selectedDate)
-        let nextSunday = CalendarHelper().addDays(date: current, days: 7)
+        var current = CalendarHelper().mondayForDate(date: selectedDate)
+        let nextMonday = CalendarHelper().addDays(date: current, days: 7)
         
-        while (current < nextSunday) {
+        while (current < nextMonday) {
             totalSquares.append(current)
             current = CalendarHelper().addDays(date: current, days: 1)
         }
@@ -187,6 +189,25 @@ extension TasksVC {
             + " " + CalendarHelper().yearString(date: selectedDate)
         calendarCollectionView.reloadData()
         tasksTableView.reloadData()
+    }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        
+        UICollectionViewCompositionalLayout { sectionIndex, _ in
+            
+            return self.createCalendarSection()
+        }
+    }
+    
+    private func createCalendarSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1 / 7), heightDimension: .fractionalHeight(1)))
+        item.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.98), heightDimension: .fractionalHeight(1)), subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.interGroupSpacing = 10
+        section.contentInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
+        return section
     }
     
 }

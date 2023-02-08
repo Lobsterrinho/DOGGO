@@ -83,7 +83,7 @@
                         <constraint firstAttribute="height" constant="48" id="kld-Wo-MFz"/>
                     </constraints>
                 </stackView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3Hd-X4-5mc">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3Hd-X4-5mc">
                     <rect key="frame" x="0.0" y="125" width="414" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>

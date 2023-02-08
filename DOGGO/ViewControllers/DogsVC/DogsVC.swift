@@ -131,8 +131,8 @@ extension DogsVC: UICollectionViewDelegate {
 extension DogsVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = view.bounds.height / 4
-        let width = view.bounds.width / 3.5
+        let height = view.bounds.height / 3
+        let width = view.bounds.width / 2.2
         return CGSize(width: width, height: height)
     }
 }

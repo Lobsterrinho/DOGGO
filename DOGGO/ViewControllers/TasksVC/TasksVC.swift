@@ -37,9 +37,8 @@ final class TasksVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarItem()
-        setWeekView()
-        registrateCollectionCell()
         registerTableCell()
+    
 //        leftSwipeGesture()
 //        rightSwipeGesture()
     }
@@ -130,28 +129,6 @@ extension TasksVC: UITableViewDelegate {
 //MARK: - simple extension for TasksVC
 
 extension TasksVC {
-    
-//    private func leftSwipeGesture() {
-//        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftGesture(_:)))
-//        leftSwipe.direction = .left
-//        calendarCollectionView.addGestureRecognizer(leftSwipe)
-//    }
-//
-//    @objc private func leftGesture(_ gesure: UISwipeGestureRecognizer) {
-//        selectedDate = CalendarHelper().addDays(date: selectedDate, days: 7)
-//        setWeekView()
-//    }
-//
-//    private func rightSwipeGesture() {
-//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(rightGesture(_:)))
-//        rightSwipe.direction = .right
-//        calendarCollectionView.addGestureRecognizer(rightSwipe)
-//    }
-//
-//    @objc private func rightGesture(_ gesure: UISwipeGestureRecognizer) {
-//        selectedDate = CalendarHelper().addDays(date: selectedDate, days: -7)
-//        setWeekView()
-//    }
     
     private func setupBarItem() {
         navigationItem.title = "Tasks"

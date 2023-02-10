@@ -7,6 +7,8 @@
 
 import Foundation
 
+//NSFetchedResultsController
+
 struct ReminderModel {
     var body: String?
     var date: Date?

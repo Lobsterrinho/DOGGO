@@ -5,19 +5,19 @@
 //  Created by Lobster on 13.01.23.
 //
 
-import Foundation
 import UIKit
+import FSCalendar
 
 final class TasksVC: UIViewController {
     
-    @IBOutlet private weak var monthLabel: UILabel!
-    @IBOutlet private weak var calendarCollectionView: UICollectionView! {
+    @IBOutlet private weak var dateLabel: UILabel! {
         didSet {
-            calendarCollectionView.delegate = self
-            calendarCollectionView.dataSource = self
-            calendarCollectionView.collectionViewLayout = createLayout()
+            dateLabel.text = dateToStringFromDate(date: Date(), format: "dd   E MMMM yyyy")
         }
     }
+    @IBOutlet private weak var calendarView: FSCalendar!
+    
+    
     @IBOutlet private weak var tasksTableView: UITableView! {
         didSet {
             tasksTableView.dataSource = self
@@ -38,9 +38,7 @@ final class TasksVC: UIViewController {
         super.viewDidLoad()
         setupBarItem()
         registerTableCell()
-    
-//        leftSwipeGesture()
-//        rightSwipeGesture()
+        setupCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,56 +48,7 @@ final class TasksVC: UIViewController {
     
 }
 
-// MARK: - UICollectionViewDelegate
 
-extension TasksVC: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedDate = totalSquares[indexPath.item]
-        calendarCollectionView.reloadData()
-        tasksTableView.reloadData()
-    }
-    
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension TasksVC: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        totalSquares.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = calendarCollectionView.dequeueReusableCell(withReuseIdentifier: "\(PrototypeCalendarCollectionCell.self)", for: indexPath) as? PrototypeCalendarCollectionCell
-        let date = totalSquares[indexPath.item]
-        cell?.numbeOfDayLabel.text = String(CalendarHelper().dayOfMonth(date: date))
-        
-        if(date == selectedDate) {
-            cell?.contentView.backgroundColor = UIColor.systemGreen
-        } else {
-            cell?.contentView.backgroundColor = UIColor.white
-        }
-        
-        return cell ?? UICollectionViewCell()
-    }
-    
-    
-    
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension TasksVC: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.size.width - 2) / 8
-        let height = (collectionView.frame.size.height - 2)
-        return CGSize(width: width, height: height)
-    }
-    
-}
 
 // MARK: - UITableViewDataSource
 
@@ -123,6 +72,9 @@ extension TasksVC: UITableViewDataSource {
 
 extension TasksVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
     
 }
 
@@ -138,6 +90,7 @@ extension TasksVC {
     
     @objc private func addDidTap() {
         let taskDetailsVC = TaskDetailsVC(nibName: "\(TaskDetailsVC.self)", bundle: nil)
+        taskDetailsVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(taskDetailsVC, animated: true)
     }
     
@@ -146,45 +99,37 @@ extension TasksVC {
         tasksTableView.register(nib, forCellReuseIdentifier: "\(PrototypeCellTasks.self)")
     }
     
-    private func registrateCollectionCell() {
-        let nib = UINib(nibName: "\(PrototypeCalendarCollectionCell.self)", bundle: nil)
-        calendarCollectionView.register(nib, forCellWithReuseIdentifier: "\(PrototypeCalendarCollectionCell.self)")
+}
+
+extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
+    
+    private func setupCalendarView() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        calendarView.scope = .week
+        calendarView.appearance.borderRadius = 0.4
+        calendarView.appearance.calendar.weekdayHeight = 0.0
+        calendarView.firstWeekday = 2
+        calendarView.headerHeight = 0.0
+        calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendarView.appearance.subtitleFont = UIFont.boldSystemFont(ofSize: 19.0)
+        calendarView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 20.0)
     }
     
-    func setWeekView() {
-        totalSquares.removeAll()
-        
-        var current = CalendarHelper().mondayForDate(date: selectedDate)
-        let nextMonday = CalendarHelper().addDays(date: current, days: 7)
-        
-        while (current < nextMonday) {
-            totalSquares.append(current)
-            current = CalendarHelper().addDays(date: current, days: 1)
-        }
-        
-        monthLabel.text = CalendarHelper().monthString(date: selectedDate)
-            + " " + CalendarHelper().yearString(date: selectedDate)
-        calendarCollectionView.reloadData()
-        tasksTableView.reloadData()
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        return dateToStringFromDate(date: date, format: "E")
     }
     
-    private func createLayout() -> UICollectionViewCompositionalLayout {
-        
-        UICollectionViewCompositionalLayout { sectionIndex, _ in
-            
-            return self.createCalendarSection()
-        }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        dateLabel.text = dateToStringFromDate(date: date, format: "dd   E MMMM yyyy")
     }
     
-    private func createCalendarSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1 / 7), heightDimension: .fractionalHeight(1)))
-        item.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.98), heightDimension: .fractionalHeight(1)), subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
-        section.interGroupSpacing = 10
-        section.contentInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
-        return section
+    private func dateToStringFromDate(date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let stringDate = dateFormatter.string(from: date)
+        return stringDate
     }
+    
     
 }

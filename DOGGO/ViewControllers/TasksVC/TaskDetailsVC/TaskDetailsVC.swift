@@ -10,21 +10,20 @@ import UIKit
 
 final class TaskDetailsVC: UIViewController {
     
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupBarItem()
         registerCell()
     }
     
-    
+    private var toDoTask = ToDoTaskModel(title: "New task", date: Date(), taskType: "Not specified")
     
 }
 
@@ -37,7 +36,7 @@ extension TaskDetailsVC {
     }
     
     @objc private func saveDidTap() {
-        
+        saveData(task: toDoTask)
         navigationController?.popViewController(animated: true)
     }
     
@@ -55,8 +54,9 @@ extension TaskDetailsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return 2
-        case 1: return 2
+        case 0: return 1
+        case 1: return 1
+        case 2: return 1
         default:
             return 0
         }
@@ -66,6 +66,7 @@ extension TaskDetailsVC: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
             cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+            cell?.delegateTitle = self
             return cell ?? UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
@@ -78,7 +79,7 @@ extension TaskDetailsVC: UITableViewDataSource {
 extension TaskDetailsVC: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -97,7 +98,7 @@ extension TaskDetailsVC: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath) as? PrototypePickerTableCell
         switch indexPath {
         case [1, 0]: openDateAlert(style: .date, label: cell?.optionValueLabel ?? UILabel())
-        case [1, 1]: openDateAlert(style: .time, label: cell?.optionValueLabel ?? UILabel())
+        case [2, 0]: print("12312312312123123123")
         default: print("Some error")
         }
     }
@@ -105,15 +106,24 @@ extension TaskDetailsVC: UITableViewDelegate {
 
 extension TaskDetailsVC {
     
+    private func saveData(task: ToDoTaskModel) {
+        let context = TasksCoreDataService.context
+        context.perform {
+            let newTask = ToDoTask(context: context)
+            newTask.title = task.title
+            newTask.date = task.date
+            newTask.taskType = task.taskType
+            newTask.id = UUID()
+        }
+    }
+    
     private func openDateAlert(style: UIDatePicker.Mode, label: UILabel) {
         
         let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
         
         let datePicker = UIDatePicker()
-        let nowDate = Date()
         datePicker.datePickerMode = style
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.maximumDate = nowDate
         
         alert.view.addSubview(datePicker)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -126,17 +136,11 @@ extension TaskDetailsVC {
             datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20.0)
         ])
         let okayButton = UIAlertAction(title: "OK", style: .default) { _ in
-            if datePicker.datePickerMode == .date {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                let dateString = dateFormatter.string(from: datePicker.date)
-                label.text = dateString
-            } else {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "kk:mm"
-                let dateString = dateFormatter.string(from: datePicker.date)
-                label.text = dateString
-            }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.string(from: datePicker.date)
+            label.text = dateString
+            self.toDoTask.date = datePicker.date
         }
         alert.addAction(okayButton)
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
@@ -146,3 +150,13 @@ extension TaskDetailsVC {
         present(alert, animated: true)
     }
 }
+
+extension TaskDetailsVC: PrototypeDetailsTableCellTitleDelegate {
+    
+    func saveTitle(title: String) {
+        
+        toDoTask.title = title
+    }
+    
+}
+

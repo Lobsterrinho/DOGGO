@@ -25,10 +25,7 @@ final class TasksVC: UIViewController {
         }
     }
     
-    var totalSquares = [Date]()
-    var selectedDate = Date()
-    
-    var label: String = "" {
+    private var tasksList = [ToDoTask]() {
         didSet {
             tasksTableView.reloadData()
         }
@@ -44,6 +41,7 @@ final class TasksVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tasksTableView.reloadData()
+        loadData(date: Date())
     }
     
 }
@@ -54,15 +52,19 @@ final class TasksVC: UIViewController {
 
 extension TasksVC: UITableViewDataSource {
     
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tasksList.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeCellTasks.self)", for: indexPath) as? PrototypeCellTasks
-        cell?.setup(title: label)
+        let task = tasksList[indexPath.section]
+        
+        cell?.setup(title: task.title!)
         
         return cell ?? UITableViewCell()
     }
@@ -73,7 +75,11 @@ extension TasksVC: UITableViewDataSource {
 extension TasksVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
     }
     
 }
@@ -99,6 +105,18 @@ extension TasksVC {
         tasksTableView.register(nib, forCellReuseIdentifier: "\(PrototypeCellTasks.self)")
     }
     
+    private func loadData(date: Date) {
+        let request = ToDoTask.fetchRequest()
+        let startDate = Calendar.current.startOfDay(for: date)
+        var components = DateComponents()
+               components.day = 1
+               components.second = -1
+        let endDate = Calendar.current.date(byAdding: components, to: startDate)!
+        request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startDate as NSDate, endDate as NSDate)
+
+        let fetchedData = try? TasksCoreDataService.context.fetch(request)
+        tasksList = fetchedData ?? []
+    }
 }
 
 extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
@@ -121,6 +139,9 @@ extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        loadData(date: date)
+        tasksTableView.reloadData()
         dateLabel.text = dateToStringFromDate(date: date, format: "dd   E MMMM yyyy")
     }
     
@@ -130,6 +151,5 @@ extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
         let stringDate = dateFormatter.string(from: date)
         return stringDate
     }
-    
     
 }

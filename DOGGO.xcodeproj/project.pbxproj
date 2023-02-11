@@ -54,9 +54,11 @@
 		BADF10F1298E854A004F5099 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF10EF298E8549004F5099 /* Reminder+CoreDataProperties.swift */; };
 		BAE9B5BE298FCC2E000578FA /* RemindersCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA8EA4CE298E7ECE0071594D /* RemindersCoreData.xcdatamodeld */; };
 		BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9B5BF2990488E000578FA /* ReminderModel.swift */; };
-		BAF481F1297E90A100F009E3 /* TaskCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */; };
-		BAF481F3297E942800F009E3 /* PrototypeCalendarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF481F2297E942800F009E3 /* PrototypeCalendarCollectionCell.xib */; };
-		BAF481F5297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF481F4297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift */; };
+		BAF535EE2996781000E6CB21 /* TasksCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535ED2996781000E6CB21 /* TasksCoreDataService.swift */; };
+		BAF535F82996885B00E6CB21 /* TasksCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF535F62996885B00E6CB21 /* TasksCoreData.xcdatamodeld */; };
+		BAF535FB299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */; };
+		BAF535FC299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */; };
+		BAF535FE2996985100E6CB21 /* ToDoTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,9 +112,11 @@
 		BADF10EE298E8549004F5099 /* Reminder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BADF10EF298E8549004F5099 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BAE9B5BF2990488E000578FA /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
-		BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarCollectionView.swift; sourceTree = "<group>"; };
-		BAF481F2297E942800F009E3 /* PrototypeCalendarCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrototypeCalendarCollectionCell.xib; sourceTree = "<group>"; };
-		BAF481F4297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCalendarCollectionCell.swift; sourceTree = "<group>"; };
+		BAF535ED2996781000E6CB21 /* TasksCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCoreDataService.swift; sourceTree = "<group>"; };
+		BAF535F72996885B00E6CB21 /* TasksCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TasksCoreData.xcdatamodel; sourceTree = "<group>"; };
+		BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTaskModel.swift; sourceTree = "<group>"; };
 		D4F46E131E00A984580885CE /* Pods-DOGGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOGGO.release.xcconfig"; path = "Target Support Files/Pods-DOGGO/Pods-DOGGO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +201,7 @@
 			children = (
 				BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */,
 				BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */,
+				BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */,
 			);
 			path = TaskDetailsVC;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				BA8EF7AD2971B45000EB6AE9 /* LaunchScreen.storyboard */,
 				BA8EF7B02971B45000EB6AE9 /* Info.plist */,
 				BA8EA4C7298E725A0071594D /* CoreData Reminders */,
+				BAF535E82996719200E6CB21 /* CoreData Tasks */,
 				BA8EF7D4297205B800EB6AE9 /* ViewControllers */,
 				BA8EF7D22972058A00EB6AE9 /* Extensions */,
 				BA5E2864298123AD0039A881 /* NetworkServices */,
@@ -296,11 +302,9 @@
 			isa = PBXGroup;
 			children = (
 				BA8EF7D52972068500EB6AE9 /* PrototypeCellTasks */,
-				BAF481F6297E99A100F009E3 /* PrototypeCollectionCellTasks */,
 				BA52CA5C297D57590052C38C /* TaskDetailsVC */,
 				BA8EF7C82971B93D00EB6AE9 /* TasksVC.xib */,
 				BA8EF7B62971B76400EB6AE9 /* TasksVC.swift */,
-				BAF481F0297E90A100F009E3 /* TaskCalendarCollectionView.swift */,
 			);
 			path = TasksVC;
 			sourceTree = "<group>";
@@ -394,13 +398,23 @@
 			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
-		BAF481F6297E99A100F009E3 /* PrototypeCollectionCellTasks */ = {
+		BAF535E82996719200E6CB21 /* CoreData Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				BAF481F2297E942800F009E3 /* PrototypeCalendarCollectionCell.xib */,
-				BAF481F4297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift */,
+				BAF535EC299677F200E6CB21 /* CoreDataModels */,
+				BAF535ED2996781000E6CB21 /* TasksCoreDataService.swift */,
+				BAF535F62996885B00E6CB21 /* TasksCoreData.xcdatamodeld */,
 			);
-			path = PrototypeCollectionCellTasks;
+			path = "CoreData Tasks";
+			sourceTree = "<group>";
+		};
+		BAF535EC299677F200E6CB21 /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */,
+				BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
 		FC055780F433FE66B96634C3 /* Pods */ = {
@@ -473,7 +487,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA28C64C2983E01800FAEDF9 /* DogDetailsPrototypeTableCell.xib in Resources */,
-				BAF481F3297E942800F009E3 /* PrototypeCalendarCollectionCell.xib in Resources */,
 				BA8EF7AF2971B45000EB6AE9 /* LaunchScreen.storyboard in Resources */,
 				BA28C6472983B82F00FAEDF9 /* DogDetailsVC.xib in Resources */,
 				BA8EA4A4298ACBC90071594D /* PrototypeOptionsTableCell.xib in Resources */,
@@ -542,26 +555,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF535FC299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */,
 				BAE9B5BE298FCC2E000578FA /* RemindersCoreData.xcdatamodeld in Sources */,
 				BA5E2866298123E20039A881 /* JSONNetworkService.swift in Sources */,
 				BA8EF7BF2971B8BA00EB6AE9 /* RemindersVC.swift in Sources */,
-				BAF481F5297E94BF00F009E3 /* PrototypeCalendarCollectionCell.swift in Sources */,
 				BA28C6462983B82F00FAEDF9 /* DogDetailsVC.swift in Sources */,
 				BADF10F0298E854A004F5099 /* Reminder+CoreDataClass.swift in Sources */,
 				BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */,
 				BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */,
 				BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */,
 				BA28C64B2983E01800FAEDF9 /* DogDetailsPrototypeTableCell.swift in Sources */,
-				BAF481F1297E90A100F009E3 /* TaskCalendarCollectionView.swift in Sources */,
 				BA8EF7C12971B8D300EB6AE9 /* ProfileVC.swift in Sources */,
 				BADDD8232982BD7900E93391 /* ObtainImage.swift in Sources */,
 				BA52CA56297B36540052C38C /* ProfileModel.swift in Sources */,
 				BA8EF7BD2971B81E00EB6AE9 /* TabBarController.swift in Sources */,
 				BA8EF7DC297206FF00EB6AE9 /* PrototypeCellReminders.swift in Sources */,
 				BA28C6422983B54F00FAEDF9 /* UITextField Extension.swift in Sources */,
+				BAF535FE2996985100E6CB21 /* ToDoTaskModel.swift in Sources */,
 				BA8EF7D02971F64200EB6AE9 /* UIColorExtension.swift in Sources */,
 				BA5E286E29817AE60039A881 /* PrototypeCollectionCellDogs.swift in Sources */,
 				BA8EF7CC2971BF1000EB6AE9 /* DogsVC.swift in Sources */,
+				BAF535EE2996781000E6CB21 /* TasksCoreDataService.swift in Sources */,
 				BA394BFE29882AF3008C66FC /* PrototypeDetailsTableCell.swift in Sources */,
 				BA8EA49F298ACAFB0071594D /* RepeatOptionVC.swift in Sources */,
 				BA8EF7B72971B76400EB6AE9 /* TasksVC.swift in Sources */,
@@ -573,6 +587,8 @@
 				BA52CA60297D57910052C38C /* TaskDetailsVC.swift in Sources */,
 				BA394BFA29881042008C66FC /* ReminderDetailsVC.swift in Sources */,
 				BADF10F1298E854A004F5099 /* Reminder+CoreDataProperties.swift in Sources */,
+				BAF535FB299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */,
+				BAF535F82996885B00E6CB21 /* TasksCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +809,16 @@
 			);
 			currentVersion = BA8EA4CF298E7ECE0071594D /* RemindersCoreData.xcdatamodel */;
 			path = RemindersCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		BAF535F62996885B00E6CB21 /* TasksCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BAF535F72996885B00E6CB21 /* TasksCoreData.xcdatamodel */,
+			);
+			currentVersion = BAF535F72996885B00E6CB21 /* TasksCoreData.xcdatamodel */;
+			path = TasksCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

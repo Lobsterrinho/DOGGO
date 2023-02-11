@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,52 +20,47 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zhQ-PK-qiC">
                         <rect key="frame" x="14" y="14" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="fYD-RS-1UW"/>
-                            <constraint firstAttribute="width" constant="50" id="x67-13-ZiD"/>
+                            <constraint firstAttribute="width" secondItem="zhQ-PK-qiC" secondAttribute="height" multiplier="1:1" id="HUL-IW-29v"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of the Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqC-kf-L3x">
-                        <rect key="frame" x="84" y="24" width="225" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <rect key="frame" x="72" y="24" width="261" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05h-WY-lu5">
-                        <rect key="frame" x="329" y="18" width="50" height="43"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReE-hy-38J">
+                        <rect key="frame" x="343" y="24" width="30" height="30"/>
                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="Jtn-Eb-m05"/>
-                            <constraint firstAttribute="height" constant="50" id="dGd-Ae-F9v"/>
+                            <constraint firstAttribute="height" constant="30" id="W15-Nc-nXC"/>
+                            <constraint firstAttribute="width" constant="30" id="zLm-fa-KjL"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal">
-                            <imageReference key="backgroundImage" image="checkmark" catalog="system" symbolScale="small"/>
-                        </state>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jqC-kf-L3x" firstAttribute="leading" secondItem="zhQ-PK-qiC" secondAttribute="trailing" constant="20" id="14B-AU-buY"/>
-                    <constraint firstItem="05h-WY-lu5" firstAttribute="leading" secondItem="jqC-kf-L3x" secondAttribute="trailing" constant="20" id="1f9-5s-846"/>
-                    <constraint firstAttribute="bottom" secondItem="05h-WY-lu5" secondAttribute="bottom" constant="14" id="5cm-t3-eFc"/>
-                    <constraint firstAttribute="trailing" secondItem="05h-WY-lu5" secondAttribute="trailing" constant="14" id="Edz-zy-4Gt"/>
-                    <constraint firstItem="05h-WY-lu5" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="14" id="FGz-Bj-dJJ"/>
-                    <constraint firstItem="zhQ-PK-qiC" firstAttribute="leading" secondItem="q8W-SS-1aM" secondAttribute="leading" constant="14" id="Fr2-Hb-eAS"/>
-                    <constraint firstAttribute="bottom" secondItem="zhQ-PK-qiC" secondAttribute="bottom" constant="14" id="KDK-90-ana"/>
-                    <constraint firstItem="zhQ-PK-qiC" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="14" id="XCU-dn-qfc"/>
-                    <constraint firstAttribute="bottom" secondItem="jqC-kf-L3x" secondAttribute="bottom" constant="24" id="ahR-Za-bAy"/>
-                    <constraint firstItem="jqC-kf-L3x" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="24" id="ygn-WP-DU8"/>
+                    <constraint firstItem="zhQ-PK-qiC" firstAttribute="leading" secondItem="q8W-SS-1aM" secondAttribute="leading" constant="14" id="2w6-vP-k8y"/>
+                    <constraint firstAttribute="trailing" secondItem="ReE-hy-38J" secondAttribute="trailing" constant="20" symbolic="YES" id="4yn-DF-7IK"/>
+                    <constraint firstAttribute="bottom" secondItem="jqC-kf-L3x" secondAttribute="bottom" constant="24" id="DF9-CV-4tA"/>
+                    <constraint firstItem="jqC-kf-L3x" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="24" id="Io7-sS-1Qf"/>
+                    <constraint firstItem="jqC-kf-L3x" firstAttribute="leading" secondItem="zhQ-PK-qiC" secondAttribute="trailing" constant="8" symbolic="YES" id="LhV-VT-yMH"/>
+                    <constraint firstAttribute="bottom" secondItem="zhQ-PK-qiC" secondAttribute="bottom" constant="14" id="W96-AK-gA3"/>
+                    <constraint firstItem="ReE-hy-38J" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="24" id="YES-Ev-w77"/>
+                    <constraint firstItem="ReE-hy-38J" firstAttribute="leading" secondItem="jqC-kf-L3x" secondAttribute="trailing" constant="10" id="cOP-pT-Bh2"/>
+                    <constraint firstItem="zhQ-PK-qiC" firstAttribute="top" secondItem="q8W-SS-1aM" secondAttribute="top" constant="14" id="i8Y-PY-Vjq"/>
+                    <constraint firstAttribute="bottom" secondItem="ReE-hy-38J" secondAttribute="bottom" constant="24" id="q5A-bD-KgH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageOfTask" destination="zhQ-PK-qiC" id="GNH-oe-94s"/>
+                <outlet property="statusButton" destination="ReE-hy-38J" id="uTR-eB-PFB"/>
                 <outlet property="titleLable" destination="jqC-kf-L3x" id="1M5-ON-LRH"/>
             </connections>
             <point key="canvasLocation" x="287.78625954198475" y="-55.633802816901408"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

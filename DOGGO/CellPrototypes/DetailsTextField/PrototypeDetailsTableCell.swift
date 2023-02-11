@@ -73,6 +73,8 @@ extension PrototypeDetailsTableCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        saveOptions()
+        return true
     }
     
     func setTextField(textString: String?) {
@@ -80,6 +82,7 @@ extension PrototypeDetailsTableCell: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        saveOptions()
         return true
     }
     

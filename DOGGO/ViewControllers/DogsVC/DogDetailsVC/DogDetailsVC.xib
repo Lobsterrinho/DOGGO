@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DogDetailsVC" customModule="DOGGO" customModuleProvider="target">
             <connections>
                 <outlet property="dogPhoto" destination="Tnl-zU-MqO" id="Dti-db-6JR"/>
-                <outlet property="tableView" destination="fMC-Nr-qfh" id="1uI-4w-HnE"/>
+                <outlet property="tableView" destination="Kr6-jn-T22" id="eVk-YV-v0I"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,35 +21,30 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fMC-Nr-qfh">
-                    <rect key="frame" x="10" y="354" width="394" height="542"/>
-                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                </tableView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tnl-zU-MqO">
-                    <rect key="frame" x="20" y="64" width="374" height="270"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="270" id="kcF-KE-deG"/>
-                    </constraints>
+                    <rect key="frame" x="17" y="52" width="380" height="460"/>
                 </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kr6-jn-T22">
+                    <rect key="frame" x="0.0" y="387" width="414" height="509"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fMC-Nr-qfh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-10" id="04M-rJ-K99"/>
-                <constraint firstItem="fMC-Nr-qfh" firstAttribute="top" secondItem="Tnl-zU-MqO" secondAttribute="bottom" constant="20" id="Ck1-I3-7RY"/>
-                <constraint firstItem="Tnl-zU-MqO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="OWb-ru-d6u"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tnl-zU-MqO" secondAttribute="trailing" constant="20" id="bXL-h9-J2v"/>
-                <constraint firstItem="fMC-Nr-qfh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="hMY-TV-4oW"/>
-                <constraint firstAttribute="bottom" secondItem="fMC-Nr-qfh" secondAttribute="bottom" id="ibO-O4-7sf"/>
-                <constraint firstItem="Tnl-zU-MqO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="z8p-lm-NIy"/>
+                <constraint firstItem="Kr6-jn-T22" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hjn-9T-SM9"/>
+                <constraint firstItem="Tnl-zU-MqO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="JMF-cO-wNA"/>
+                <constraint firstAttribute="bottom" secondItem="Kr6-jn-T22" secondAttribute="bottom" id="SIP-kQ-zwH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tnl-zU-MqO" secondAttribute="trailing" constant="17" id="c2B-Qy-NTv"/>
+                <constraint firstItem="Kr6-jn-T22" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dDy-Bq-6Gi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Tnl-zU-MqO" secondAttribute="bottom" constant="350" id="dUZ-kO-bHu"/>
+                <constraint firstItem="Kr6-jn-T22" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="343" id="mOk-hQ-UeO"/>
+                <constraint firstItem="Tnl-zU-MqO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="y7k-LW-jnN"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="-1.3392857142857142"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

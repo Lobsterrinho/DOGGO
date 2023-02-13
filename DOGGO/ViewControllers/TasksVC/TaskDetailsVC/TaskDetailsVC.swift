@@ -21,9 +21,16 @@ final class TaskDetailsVC: UIViewController {
         super.viewDidLoad()
         setupBarItem()
         registerCell()
+        
     }
     
-    private var toDoTask = ToDoTaskModel(title: "New task", date: Date(), taskType: "Not specified")
+    var inEditMode: Bool = false
+    
+    var taskForUpdate = ToDoTask()
+    
+    private var isDelegateWorked = false
+    
+    private var toDoTask = ToDoTaskModel(title: "New task", date: Date(), taskType: "paw", id: UUID(), status: false)
     
 }
 
@@ -36,8 +43,13 @@ extension TaskDetailsVC {
     }
     
     @objc private func saveDidTap() {
-        saveData(task: toDoTask)
-        navigationController?.popViewController(animated: true)
+        if inEditMode == false {
+            saveData(task: toDoTask)
+            navigationController?.popViewController(animated: true)
+        } else {
+            updateData(task: toDoTask)
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     private func registerCell() {
@@ -66,11 +78,39 @@ extension TaskDetailsVC: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
             cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
-            cell?.delegateTitle = self
+            if inEditMode == false {
+                cell?.delegateTitle = self
+            } else {
+                cell?.delegateTitle = self
+                cell?.setTitleField(title: taskForUpdate.title!)
+            }
             return cell ?? UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
-            cell?.setupNameLabel(indexPath: indexPath)
+            cell?.setupNameLabel(indexPath: indexPath, title1: "Date", title2: nil, title3: "Activity type")
+            if inEditMode == false {
+                switch indexPath {
+                case [1, 0]: cell?.optionValueLabel.text = dateFormatIntoString(date: toDoTask.date)
+                case [2, 0] where toDoTask.taskType == "paw": cell?.optionValueLabel.isHidden = true
+                case [2, 0]: cell?.optionValueLabel.text = toDoTask.taskType
+                default: print("Some error")
+                }
+            } else {
+                switch indexPath {
+                case [1, 0]:
+                    cell?.optionValueLabel.text = dateFormatIntoString(date: taskForUpdate.date!);
+                    toDoTask.date = taskForUpdate.date!
+                case [2, 0]: cell?.optionValueLabel.text = taskForUpdate.taskType
+                    if isDelegateWorked == false {
+                        toDoTask.taskType = taskForUpdate.taskType!
+                    } else {
+                        cell?.optionValueLabel.text = toDoTask.taskType
+                    }
+                    
+                    
+                default: print("Some error")
+                }
+            }
             return cell ?? UITableViewCell()
         }
     }
@@ -98,13 +138,20 @@ extension TaskDetailsVC: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath) as? PrototypePickerTableCell
         switch indexPath {
         case [1, 0]: openDateAlert(style: .date, label: cell?.optionValueLabel ?? UILabel())
-        case [2, 0]: print("12312312312123123123")
+        case [2, 0]: openActivityTypes()
         default: print("Some error")
         }
     }
 }
 
 extension TaskDetailsVC {
+    
+    private func dateFormatIntoString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
     
     private func saveData(task: ToDoTaskModel) {
         let context = TasksCoreDataService.context
@@ -113,8 +160,28 @@ extension TaskDetailsVC {
             newTask.title = task.title
             newTask.date = task.date
             newTask.taskType = task.taskType
-            newTask.id = UUID()
+            newTask.id = task.id
+            newTask.status = task.status
+            TasksCoreDataService.saveContext()
         }
+    }
+    
+    private func updateData(task: ToDoTaskModel) {
+        let context = TasksCoreDataService.context
+        context.perform { [self] in
+            taskForUpdate.title = task.title
+            taskForUpdate.date = task.date
+            taskForUpdate.taskType = task.taskType
+            taskForUpdate.status = task.status
+            TasksCoreDataService.saveContext()
+        }
+    }
+    
+    
+    private func openActivityTypes() {
+        let activityTypeVC = ActivityTypeVC(nibName: "\(ActivityTypeVC.self)", bundle: nil)
+        activityTypeVC.delegate = self
+        present(activityTypeVC, animated: true)
     }
     
     private func openDateAlert(style: UIDatePicker.Mode, label: UILabel) {
@@ -146,7 +213,6 @@ extension TaskDetailsVC {
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(cancelButton)
         
-        
         present(alert, animated: true)
     }
 }
@@ -154,9 +220,16 @@ extension TaskDetailsVC {
 extension TaskDetailsVC: PrototypeDetailsTableCellTitleDelegate {
     
     func saveTitle(title: String) {
-        
         toDoTask.title = title
     }
+}
+
+extension TaskDetailsVC: ActivityTypeDelegate {
     
+    func saveImageAndTitle(imageNameAndTitle: String) {
+        toDoTask.taskType = imageNameAndTitle
+        isDelegateWorked = true
+        tableView.reloadRows(at: [[2, 0]], with: .automatic)
+    }
 }
 

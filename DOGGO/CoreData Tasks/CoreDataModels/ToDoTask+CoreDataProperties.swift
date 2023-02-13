@@ -2,7 +2,7 @@
 //  ToDoTask+CoreDataProperties.swift
 //  DOGGO
 //
-//  Created by Lobster on 10.02.23.
+//  Created by Lobster on 11.02.23.
 //
 //
 
@@ -20,6 +20,7 @@ extension ToDoTask {
     @NSManaged public var date: Date?
     @NSManaged public var taskType: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var status: Bool
 
 }
 

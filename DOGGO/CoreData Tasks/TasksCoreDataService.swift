@@ -35,5 +35,23 @@ final class TasksCoreDataService {
         }
     }
     
+    static func fetchController(date: Date) {
+        let context = self.context
+        let fetchRequest = ToDoTask.fetchRequest()
+        let startDate = Calendar.current.startOfDay(for: date)
+        var components = DateComponents()
+               components.day = 1
+               components.second = -1
+        let endDate = Calendar.current.date(byAdding: components, to: startDate)!
+        fetchRequest.predicate = NSPredicate(format: "\(#keyPath(ToDoTask.date)) >= %@ AND \(#keyPath(ToDoTask.date)) <= %@", startDate as NSDate, endDate as NSDate)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "\(#keyPath(ToDoTask.date))", ascending: true)]
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try controller.performFetch()
+        } catch {
+            fatalError("Failed to fetch entities: \(error)")
+        }
+    }
+    
 }
 

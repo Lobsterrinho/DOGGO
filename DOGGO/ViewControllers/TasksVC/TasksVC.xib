@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mt0-uO-nII" customClass="FSCalendar">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="10" width="414" height="886"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAP-kg-Jb1">
                             <rect key="frame" x="20" y="90" width="374" height="21"/>
@@ -40,7 +40,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Nf0-NJ-5zp">
-                    <rect key="frame" x="0.0" y="121" width="414" height="775"/>
+                    <rect key="frame" x="0.0" y="131" width="414" height="765"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b92-TN-NWZ">
                         <size key="itemSize" width="128" height="128"/>
@@ -49,9 +49,9 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wk5-AM-0ny">
-                    <rect key="frame" x="0.0" y="121" width="414" height="775"/>
-                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wk5-AM-0ny">
+                    <rect key="frame" x="0.0" y="131" width="414" height="765"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -61,7 +61,7 @@
                 <constraint firstAttribute="bottom" secondItem="Nf0-NJ-5zp" secondAttribute="bottom" id="9w4-Wi-CYm"/>
                 <constraint firstItem="Nf0-NJ-5zp" firstAttribute="top" secondItem="lAP-kg-Jb1" secondAttribute="bottom" constant="10" id="Axd-8A-fqK"/>
                 <constraint firstAttribute="bottom" secondItem="Mt0-uO-nII" secondAttribute="bottom" id="DoF-CN-fHw"/>
-                <constraint firstItem="Mt0-uO-nII" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-44" id="HNw-2J-n6z"/>
+                <constraint firstItem="Mt0-uO-nII" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-34" id="HNw-2J-n6z"/>
                 <constraint firstItem="Mt0-uO-nII" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Jjv-yP-nl2"/>
                 <constraint firstItem="Mt0-uO-nII" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LVw-XO-agE"/>
                 <constraint firstAttribute="bottom" secondItem="wk5-AM-0ny" secondAttribute="bottom" id="U2S-ZH-k3b"/>
@@ -76,9 +76,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

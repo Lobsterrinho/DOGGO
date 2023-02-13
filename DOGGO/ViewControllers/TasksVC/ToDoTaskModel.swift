@@ -12,5 +12,7 @@ struct ToDoTaskModel {
     var title: String
     var date: Date
     var taskType: String
+    var id: UUID
+    var status: Bool
     
 }

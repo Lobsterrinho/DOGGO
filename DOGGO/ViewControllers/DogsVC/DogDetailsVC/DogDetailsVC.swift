@@ -9,11 +9,15 @@ import UIKit
 
 final class DogDetailsVC: UIViewController {
     
-    @IBOutlet private weak var dogPhoto: UIImageView!
+    @IBOutlet private weak var dogPhoto: UIImageView! {
+        didSet {
+            dogPhoto.layer.cornerRadius = 30.0
+        }
+    }
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
-            tableView.layer.cornerRadius = 15.0
+            tableView.layer.cornerRadius = 30.0
         }
     }
     
@@ -44,12 +48,17 @@ final class DogDetailsVC: UIViewController {
         setupDescriptionParameters()
         registerCell()
         setupImage()
+        setupBarItem()
     }
     
     
 }
 
 extension DogDetailsVC {
+    
+    private func setupBarItem() {
+        navigationItem.title = "Dog details"
+    }
     
     func setupDescriptionParameters() {
         dogDescriptionParameters = [dog.breedName,

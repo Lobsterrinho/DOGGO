@@ -23,18 +23,14 @@ final class PrototypeDetailsTableCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField! {
         didSet {
             textField.delegate = self
-            saveOptions()
         }
     }
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        saveOptions()
+        super .awakeFromNib()
+        backgroundColor = .cellsColor
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        saveOptions()
-    }
 }
 
 extension PrototypeDetailsTableCell {
@@ -73,12 +69,7 @@ extension PrototypeDetailsTableCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        saveOptions()
         return true
-    }
-    
-    func setTextField(textString: String?) {
-        textField.text = textString
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -87,9 +78,18 @@ extension PrototypeDetailsTableCell: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        print(textField.text ?? "**Empty**")
         isEmpty()
         saveOptions()
+    }
+    
+    func setTitleField(title: String) {
+        textField.text = title
+        delegateTitle?.saveTitle(title: title)
+    }
+    
+    func setBodyField(body: String) {
+        textField.text = body
+        delegateBody?.saveBody(body: body)
     }
     
     

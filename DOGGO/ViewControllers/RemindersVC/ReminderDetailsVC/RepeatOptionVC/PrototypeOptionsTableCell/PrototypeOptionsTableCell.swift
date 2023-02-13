@@ -23,6 +23,11 @@ final class PrototypeOptionsTableCell: UITableViewCell {
         "every 6 Month",
         "Yearly"
     ]
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .cellsColor
+    }
 }
 
 extension PrototypeOptionsTableCell {

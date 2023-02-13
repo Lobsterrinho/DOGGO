@@ -36,7 +36,7 @@ final class DogsVC: UIViewController {
             self.dogs = dogs
             self.collectionView.reloadData()
         }
-        
+        view.backgroundColor = .white
         registerCollectionCell()
         setupBarItem()
     }
@@ -61,7 +61,14 @@ extension DogsVC {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.automaticallyShowsCancelButton = true
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Search lovely dog"
+        searchController.searchBar.clipsToBounds = true
+        searchController.searchBar.tintColor = .black
+        if let searchField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            searchField.layer.cornerRadius = 18
+            searchField.layer.masksToBounds = true
+            searchField.backgroundColor = .tabBarColor
+        }
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -131,10 +138,17 @@ extension DogsVC: UICollectionViewDelegate {
 extension DogsVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = view.bounds.height / 3
-        let width = view.bounds.width / 2.2
-        return CGSize(width: width, height: height)
+//        let height = view.bounds.height / 4
+//        let width = view.bounds.width / 2.2
+        return CGSize(width: 180, height: 230)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        .init(top: 10, left: 17, bottom: 10, right: 17)
+    }
+    
+    
+    
 }
 
 extension DogsVC: UISearchResultsUpdating, UISearchControllerDelegate {

@@ -144,7 +144,7 @@ extension RemindersVC: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let reminder = remindersList[indexPath.row]
         let reminderDetailsVC = ReminderDetailsVC(nibName: "\(ReminderDetailsVC.self)", bundle: nil)
-        reminderDetailsVC.reminderCoreData = reminder
+        reminderDetailsVC.reminderForUpdate = reminder
         reminderDetailsVC.isEdit = true
         
         reminderDetailsVC.hidesBottomBarWhenPushed = true

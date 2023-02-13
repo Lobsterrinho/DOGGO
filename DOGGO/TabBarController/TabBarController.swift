@@ -38,7 +38,7 @@ final class TabBarController: UITabBarController {
             ),
             generateVC(
                 viewController: ProfileVC(),
-                title: "Person",
+                title: "Profile",
                 image: UIImage(systemName: "person.fill")
             )
         ]
@@ -48,6 +48,12 @@ final class TabBarController: UITabBarController {
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = image
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.tintColor = .selectedItem
+        
+        
+        navigationController.navigationBar.prefersLargeTitles = true
+        
+
         
         return navigationController
     }

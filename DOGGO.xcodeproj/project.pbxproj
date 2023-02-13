@@ -56,9 +56,13 @@
 		BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9B5BF2990488E000578FA /* ReminderModel.swift */; };
 		BAF535EE2996781000E6CB21 /* TasksCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535ED2996781000E6CB21 /* TasksCoreDataService.swift */; };
 		BAF535F82996885B00E6CB21 /* TasksCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF535F62996885B00E6CB21 /* TasksCoreData.xcdatamodeld */; };
-		BAF535FB299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */; };
-		BAF535FC299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */; };
 		BAF535FE2996985100E6CB21 /* ToDoTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */; };
+		BAF536132997A0A200E6CB21 /* ActivityTypePrototypeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF536112997A0A200E6CB21 /* ActivityTypePrototypeTableCell.swift */; };
+		BAF536142997A0A200E6CB21 /* ActivityTypePrototypeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF536122997A0A200E6CB21 /* ActivityTypePrototypeTableCell.xib */; };
+		BAF536172997A52000E6CB21 /* ActivityTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF536152997A52000E6CB21 /* ActivityTypeVC.swift */; };
+		BAF536182997A52000E6CB21 /* ActivityTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF536162997A52000E6CB21 /* ActivityTypeVC.xib */; };
+		BAF5361B2997D81000E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF536192997D81000E6CB21 /* ToDoTask+CoreDataClass.swift */; };
+		BAF5361C2997D81000E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5361A2997D81000E6CB21 /* ToDoTask+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,9 +118,13 @@
 		BAE9B5BF2990488E000578FA /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 		BAF535ED2996781000E6CB21 /* TasksCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCoreDataService.swift; sourceTree = "<group>"; };
 		BAF535F72996885B00E6CB21 /* TasksCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TasksCoreData.xcdatamodel; sourceTree = "<group>"; };
-		BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTaskModel.swift; sourceTree = "<group>"; };
+		BAF536112997A0A200E6CB21 /* ActivityTypePrototypeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypePrototypeTableCell.swift; sourceTree = "<group>"; };
+		BAF536122997A0A200E6CB21 /* ActivityTypePrototypeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypePrototypeTableCell.xib; sourceTree = "<group>"; };
+		BAF536152997A52000E6CB21 /* ActivityTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeVC.swift; sourceTree = "<group>"; };
+		BAF536162997A52000E6CB21 /* ActivityTypeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypeVC.xib; sourceTree = "<group>"; };
+		BAF536192997D81000E6CB21 /* ToDoTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BAF5361A2997D81000E6CB21 /* ToDoTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D4F46E131E00A984580885CE /* Pods-DOGGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOGGO.release.xcconfig"; path = "Target Support Files/Pods-DOGGO/Pods-DOGGO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,9 +207,9 @@
 		BA52CA5C297D57590052C38C /* TaskDetailsVC */ = {
 			isa = PBXGroup;
 			children = (
+				BAF5361D29998AC900E6CB21 /* ActivityType */,
 				BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */,
 				BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */,
-				BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */,
 			);
 			path = TaskDetailsVC;
 			sourceTree = "<group>";
@@ -301,10 +309,11 @@
 		BA8EF7B82971B76F00EB6AE9 /* TasksVC */ = {
 			isa = PBXGroup;
 			children = (
-				BA8EF7D52972068500EB6AE9 /* PrototypeCellTasks */,
 				BA52CA5C297D57590052C38C /* TaskDetailsVC */,
+				BA8EF7D52972068500EB6AE9 /* PrototypeCellTasks */,
 				BA8EF7C82971B93D00EB6AE9 /* TasksVC.xib */,
 				BA8EF7B62971B76400EB6AE9 /* TasksVC.swift */,
+				BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */,
 			);
 			path = TasksVC;
 			sourceTree = "<group>";
@@ -411,10 +420,21 @@
 		BAF535EC299677F200E6CB21 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				BAF535F9299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift */,
-				BAF535FA299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift */,
+				BAF536192997D81000E6CB21 /* ToDoTask+CoreDataClass.swift */,
+				BAF5361A2997D81000E6CB21 /* ToDoTask+CoreDataProperties.swift */,
 			);
 			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		BAF5361D29998AC900E6CB21 /* ActivityType */ = {
+			isa = PBXGroup;
+			children = (
+				BAF536152997A52000E6CB21 /* ActivityTypeVC.swift */,
+				BAF536162997A52000E6CB21 /* ActivityTypeVC.xib */,
+				BAF536122997A0A200E6CB21 /* ActivityTypePrototypeTableCell.xib */,
+				BAF536112997A0A200E6CB21 /* ActivityTypePrototypeTableCell.swift */,
+			);
+			path = ActivityType;
 			sourceTree = "<group>";
 		};
 		FC055780F433FE66B96634C3 /* Pods */ = {
@@ -497,8 +517,10 @@
 				BA394BFB29881042008C66FC /* ReminderDetailsVC.xib in Resources */,
 				BA394BFF29882AF3008C66FC /* PrototypeDetailsTableCell.xib in Resources */,
 				BA394C142988EA59008C66FC /* PrototypePickerTableCell.xib in Resources */,
+				BAF536182997A52000E6CB21 /* ActivityTypeVC.xib in Resources */,
 				BA8EF7E02972072600EB6AE9 /* PrototypeCellTasks.xib in Resources */,
 				BA8EF7C92971B93D00EB6AE9 /* TasksVC.xib in Resources */,
+				BAF536142997A0A200E6CB21 /* ActivityTypePrototypeTableCell.xib in Resources */,
 				BA8EF7C52971B91B00EB6AE9 /* ProfileVC.xib in Resources */,
 				BA8EF7C72971B93300EB6AE9 /* RemindersVC.xib in Resources */,
 				BA5E286C29817AD50039A881 /* PrototypeCollectionCellDogs.xib in Resources */,
@@ -555,12 +577,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAF535FC299688FB00E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */,
 				BAE9B5BE298FCC2E000578FA /* RemindersCoreData.xcdatamodeld in Sources */,
 				BA5E2866298123E20039A881 /* JSONNetworkService.swift in Sources */,
 				BA8EF7BF2971B8BA00EB6AE9 /* RemindersVC.swift in Sources */,
+				BAF536172997A52000E6CB21 /* ActivityTypeVC.swift in Sources */,
 				BA28C6462983B82F00FAEDF9 /* DogDetailsVC.swift in Sources */,
 				BADF10F0298E854A004F5099 /* Reminder+CoreDataClass.swift in Sources */,
+				BAF5361C2997D81000E6CB21 /* ToDoTask+CoreDataProperties.swift in Sources */,
 				BAE9B5C02990488E000578FA /* ReminderModel.swift in Sources */,
 				BA8EA4A6298ACC390071594D /* PrototypeOptionsTableCell.swift in Sources */,
 				BA8EF7A02971B44E00EB6AE9 /* AppDelegate.swift in Sources */,
@@ -571,6 +594,7 @@
 				BA8EF7BD2971B81E00EB6AE9 /* TabBarController.swift in Sources */,
 				BA8EF7DC297206FF00EB6AE9 /* PrototypeCellReminders.swift in Sources */,
 				BA28C6422983B54F00FAEDF9 /* UITextField Extension.swift in Sources */,
+				BAF5361B2997D81000E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */,
 				BAF535FE2996985100E6CB21 /* ToDoTaskModel.swift in Sources */,
 				BA8EF7D02971F64200EB6AE9 /* UIColorExtension.swift in Sources */,
 				BA5E286E29817AE60039A881 /* PrototypeCollectionCellDogs.swift in Sources */,
@@ -582,12 +606,12 @@
 				BA5E2869298125F30039A881 /* DogModel.swift in Sources */,
 				BA8EA4C9298E72970071594D /* RemindersCoreData.swift in Sources */,
 				BA8EF7A22971B44E00EB6AE9 /* SceneDelegate.swift in Sources */,
+				BAF536132997A0A200E6CB21 /* ActivityTypePrototypeTableCell.swift in Sources */,
 				BA8EF7D7297206B000EB6AE9 /* PrototypeCellTasks.swift in Sources */,
 				BA394C132988EA59008C66FC /* PrototypePickerTableCell.swift in Sources */,
 				BA52CA60297D57910052C38C /* TaskDetailsVC.swift in Sources */,
 				BA394BFA29881042008C66FC /* ReminderDetailsVC.swift in Sources */,
 				BADF10F1298E854A004F5099 /* Reminder+CoreDataProperties.swift in Sources */,
-				BAF535FB299688FB00E6CB21 /* ToDoTask+CoreDataClass.swift in Sources */,
 				BAF535F82996885B00E6CB21 /* TasksCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

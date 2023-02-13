@@ -9,11 +9,15 @@ import UIKit
 
 final class ReminderDetailsVC: UIViewController {
     
-    var reminderCoreData = Reminder()
+    var reminderForUpdate = Reminder()
     var isEdit: Bool = false
-    private var reminder = ReminderModel()
-    
-    private var VC = RemindersVC()
+    private var isDelegateWorked: Bool = false
+    private var reminder = ReminderModel(body: "Some description of the reminder",
+                                         date: Date(),
+                                         id: UUID(),
+                                         repeatOption: "Never",
+                                         time: Date(),
+                                         title: "New reminder")
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -56,8 +60,6 @@ extension ReminderDetailsVC {
     }
     
     private func saveData(reminder: ReminderModel) {
-        
-        
         let context = RemindersCoreData.context
         context.perform { [self] in
             
@@ -72,11 +74,11 @@ extension ReminderDetailsVC {
                 newReminder.repeatOption = reminder.repeatOption
                 RemindersCoreData.saveContext()
             } else {
-                reminderCoreData.title = reminder.title
-                reminderCoreData.body = reminder.body
-                reminderCoreData.date = reminder.date
-                reminderCoreData.time = reminder.time
-                reminderCoreData.repeatOption = reminder.repeatOption
+                reminderForUpdate.title = reminder.title
+                reminderForUpdate.body = reminder.body
+                reminderForUpdate.date = reminder.date
+                reminderForUpdate.time = reminder.time
+                reminderForUpdate.repeatOption = reminder.repeatOption
                 RemindersCoreData.saveContext()
             }
         }
@@ -131,18 +133,12 @@ extension ReminderDetailsVC {
         present(repeatOptionVC, animated: true)
     }
     
-    private func stringFromDate(dateType: Date, reminder: Reminder, completion: @escaping (String) -> Void) {
-        if dateType == reminder.date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            let dateString = dateFormatter.string(from: dateType)
-            completion(dateString)
-        } else if dateType == reminder.time {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "kk:mm"
-            let timeString = dateFormatter.string(from: dateType)
-            completion(timeString)
-        }
+    private func stringFromDate(date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+        
     }
     
 }
@@ -162,43 +158,46 @@ extension ReminderDetailsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
-            if isEdit {
-                cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+            cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+            if isEdit == false{
+                cell?.delegateTitle = self
+                cell?.delegateBody = self
+            } else {
                 cell?.delegateTitle = self
                 cell?.delegateBody = self
                 switch indexPath {
-                case [0, 0]: cell?.textField.text = reminderCoreData.title
-                case [0, 1]: cell?.textField.text = reminderCoreData.body
+                case [0, 0]: cell?.setTitleField(title: reminderForUpdate.title!)
+                case [0, 1]: cell?.setBodyField(body: reminderForUpdate.body!)
                 default: print("Some error")
                 }
-            } else {
-                cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
-                cell?.delegateTitle = self
-                cell?.delegateBody = self
             }
             return cell ?? UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypePickerTableCell.self)", for: indexPath) as? PrototypePickerTableCell
-            
-            if isEdit {
-                cell?.setupNameLabel(indexPath: indexPath)
+            cell?.setupNameLabel(indexPath: indexPath, title1: "Date", title2: "Time", title3: "Repeat option")
+            if isEdit == false {
                 if indexPath == [2, 0] {
                     cell?.optionValueLabel.text = reminder.repeatOption
-                }
-                switch indexPath {
-                case [1, 0]: VC.stringFromDate(dateType: reminderCoreData.date ?? Date(), reminder: reminderCoreData, completion: { date in
-                    cell?.optionValueLabel.text = date
-                })
-                case [1, 1]: VC.stringFromDate(dateType: reminderCoreData.time ?? Date(), reminder: reminderCoreData, completion: { time in
-                    cell?.optionValueLabel.text = time
-                })
-                case [2, 0]: cell?.optionValueLabel.text = reminderCoreData.repeatOption
-                default: print("Some error")
                 }
             } else {
-                cell?.setupNameLabel(indexPath: indexPath)
                 if indexPath == [2, 0] {
-                    cell?.optionValueLabel.text = reminder.repeatOption
+                    cell?.optionValueLabel.text = reminderForUpdate.repeatOption
+                }
+                switch indexPath {
+                case [1, 0]:
+                    cell?.optionValueLabel.text = stringFromDate(date: reminderForUpdate.date!,
+                                                                 format: "dd.MM.yyyy")
+                    reminder.date = reminderForUpdate.date
+                case [1, 1]: cell?.optionValueLabel.text = stringFromDate(date: reminderForUpdate.date!,
+                                                                          format: "kk:mm")
+                    reminder.time = reminderForUpdate.time
+                case [2, 0]: cell?.optionValueLabel.text = reminderForUpdate.repeatOption
+                    if isDelegateWorked == false {
+                        reminder.repeatOption = reminderForUpdate.repeatOption
+                    } else {
+                        cell?.optionValueLabel.text = reminder.repeatOption
+                    }
+                default: print("Some error")
                 }
             }
             return cell ?? UITableViewCell()
@@ -248,6 +247,7 @@ extension ReminderDetailsVC: RepeatOptionVCDelegate {
     
     func repeatOptionDidSelect(option: String) {
         reminder.repeatOption = option
+        isDelegateWorked = true
         tableView.reloadRows(at: [[2, 0]], with: .none)
     }
 }

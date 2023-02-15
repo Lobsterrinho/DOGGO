@@ -53,6 +53,13 @@
                     <rect key="frame" x="0.0" y="131" width="414" height="765"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-lZ-T2n">
+                    <rect key="frame" x="0.0" y="126" width="414" height="1"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="w8x-Ld-Max"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -62,12 +69,15 @@
                 <constraint firstItem="Nf0-NJ-5zp" firstAttribute="top" secondItem="lAP-kg-Jb1" secondAttribute="bottom" constant="10" id="Axd-8A-fqK"/>
                 <constraint firstAttribute="bottom" secondItem="Mt0-uO-nII" secondAttribute="bottom" id="DoF-CN-fHw"/>
                 <constraint firstItem="Mt0-uO-nII" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-34" id="HNw-2J-n6z"/>
+                <constraint firstItem="WRv-lZ-T2n" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Jdk-ql-TOT"/>
                 <constraint firstItem="Mt0-uO-nII" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Jjv-yP-nl2"/>
                 <constraint firstItem="Mt0-uO-nII" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LVw-XO-agE"/>
+                <constraint firstItem="WRv-lZ-T2n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ldi-SJ-EOp"/>
                 <constraint firstAttribute="bottom" secondItem="wk5-AM-0ny" secondAttribute="bottom" id="U2S-ZH-k3b"/>
                 <constraint firstItem="Nf0-NJ-5zp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="cg7-UJ-Vk5"/>
                 <constraint firstItem="wk5-AM-0ny" firstAttribute="top" secondItem="lAP-kg-Jb1" secondAttribute="bottom" constant="10" id="cp0-qD-5Uq"/>
                 <constraint firstItem="wk5-AM-0ny" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dtJ-NI-jAt"/>
+                <constraint firstItem="WRv-lZ-T2n" firstAttribute="top" secondItem="lAP-kg-Jb1" secondAttribute="bottom" constant="5" id="jn5-sM-VGn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wk5-AM-0ny" secondAttribute="trailing" id="moH-zf-m4q"/>
             </constraints>
             <point key="canvasLocation" x="95.652173913043484" y="19.419642857142858"/>
@@ -76,6 +86,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

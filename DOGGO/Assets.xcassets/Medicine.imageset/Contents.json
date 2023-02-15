@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "haircut.png",
+      "filename" : "pill.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "haircut 1.png",
+      "filename" : "pill 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "haircut 2.png",
+      "filename" : "pill 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

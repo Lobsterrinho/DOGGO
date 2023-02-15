@@ -39,6 +39,7 @@ final class TasksVC: UIViewController {
         setupBarItem()
         registerTableCell()
         setupCalendarView()
+        permissionNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,10 +68,9 @@ extension TasksVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeCellTasks.self)", for: indexPath) as? PrototypeCellTasks
         let task = tasksList[indexPath.section]
-        print(task)
-        cell?.taskForUpdate = task
-        cell?.index = [indexPath.section]
+        cell?.setInfoForUpdate(task: task, indexPath: indexPath)
         cell?.setup(title: task.title!, image: task.taskType!)
+        
         
         return cell ?? UITableViewCell()
     }
@@ -91,6 +91,7 @@ extension TasksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         tableView.beginUpdates()
         deleteData(indexPath: indexPath)
+        deleteNotification(indexPath: indexPath)
         self.tasksList.remove(at: indexPath.section)
         self.tasksTableView.deleteSections([indexPath.item], with: .none)
         tableView.endUpdates()
@@ -98,7 +99,6 @@ extension TasksVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let cell = tableView.cellForRow(at: indexPath) as? PrototypeCellTasks
         let task = tasksList[indexPath.section]
         let taskDetailsVC = TaskDetailsVC(nibName: "\(TaskDetailsVC.self)", bundle: nil)
         taskDetailsVC.inEditMode = true
@@ -113,6 +113,14 @@ extension TasksVC: UITableViewDelegate {
 
 extension TasksVC {
     
+    private func permissionNotificationCenter() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        notificationCenter.requestAuthorization(options: options) { isGranted, error in
+            print(isGranted ? "User accepted notification" : "User declined notification")
+        }
+    }
+    
     private func deleteData(indexPath: IndexPath) {
         let context = TasksCoreDataService.context
         let task = tasksList[indexPath.section]
@@ -122,6 +130,11 @@ extension TasksVC {
         }
     }
     
+    private func deleteNotification(indexPath: IndexPath) {
+        let task = tasksList[indexPath.section]
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [task.id!.uuidString])
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id!.uuidString])
+    }
     
     private func setupBarItem() {
         navigationItem.title = "Tasks"
@@ -172,8 +185,8 @@ extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
         calendarView.firstWeekday = 2
         calendarView.headerHeight = 0.0
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendarView.appearance.subtitleFont = UIFont.boldSystemFont(ofSize: 19.0)
-        calendarView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 20.0)
+        calendarView.appearance.subtitleFont = UIFont.systemFont(ofSize: 19.0, weight: .medium)
+        calendarView.appearance.titleFont = UIFont.systemFont(ofSize: 19.0, weight: .medium)
     }
     
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
@@ -185,9 +198,7 @@ extension TasksVC: FSCalendarDelegate & FSCalendarDataSource {
         tasksTableView.reloadData()
         dateLabel.text = dateToStringFromDate(date: date, format: "dd   E MMMM yyyy")
     }
-    
-    
-    
+        
     private func dateToStringFromDate(date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format

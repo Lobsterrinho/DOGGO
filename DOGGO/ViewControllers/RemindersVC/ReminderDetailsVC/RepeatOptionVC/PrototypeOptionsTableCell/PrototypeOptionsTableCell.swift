@@ -14,13 +14,10 @@ final class PrototypeOptionsTableCell: UITableViewCell {
     private let nameOptionArray: [String] = [
         "Never",
         "Daily",
-        "Weekdays",
-        "Weekends",
         "Weekly",
-        "Fortnightly",
         "Monthly",
-        "every 3 Month",
-        "every 6 Month",
+        "Every 3 Month",
+        "Every 6 Month",
         "Yearly"
     ]
     

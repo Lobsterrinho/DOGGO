@@ -23,12 +23,12 @@ extension ActivityTypePrototypeTableCell {
     
     func setupCell(indexPath: IndexPath) {
         switch indexPath {
-        case [0, 0]: activityImage.image = UIImage(named: "food"); activityLabel.text = "food"
-        case [0, 1]: activityImage.image = UIImage(named: "beauty"); activityLabel.text = "beauty"
-        case [0, 2]: activityImage.image = UIImage(named: "pill"); activityLabel.text = "pill"
-        case [0, 3]: activityImage.image = UIImage(named: "play"); activityLabel.text = "play"
-        case [0, 4]: activityImage.image = UIImage(named: "walk"); activityLabel.text = "walk"
-        case [0, 5]: activityImage.image = UIImage(named: "wash"); activityLabel.text = "wash"
+        case [0, 0]: activityImage.image = UIImage(named: "Food"); activityLabel.text = "Food"
+        case [0, 1]: activityImage.image = UIImage(named: "Beauty"); activityLabel.text = "Beauty"
+        case [0, 2]: activityImage.image = UIImage(named: "Medicine"); activityLabel.text = "Medicine"
+        case [0, 3]: activityImage.image = UIImage(named: "Play"); activityLabel.text = "Play"
+        case [0, 4]: activityImage.image = UIImage(named: "Walk"); activityLabel.text = "Walk"
+        case [0, 5]: activityImage.image = UIImage(named: "Wash"); activityLabel.text = "Wash"
         default: print("Some error")
         }
     }

@@ -208,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				BAF5361D29998AC900E6CB21 /* ActivityType */,
+				BA8EF7D52972068500EB6AE9 /* PrototypeCellTasks */,
 				BA52CA5F297D57910052C38C /* TaskDetailsVC.swift */,
 				BA52CA61297D57FE0052C38C /* TaskDetailsVC.xib */,
 			);
@@ -310,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				BA52CA5C297D57590052C38C /* TaskDetailsVC */,
-				BA8EF7D52972068500EB6AE9 /* PrototypeCellTasks */,
 				BA8EF7C82971B93D00EB6AE9 /* TasksVC.xib */,
 				BA8EF7B62971B76400EB6AE9 /* TasksVC.swift */,
 				BAF535FD2996985100E6CB21 /* ToDoTaskModel.swift */,

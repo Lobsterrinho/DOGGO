@@ -28,18 +28,82 @@ final class ReminderDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setNavigationItem()
         registerCell()
     }
-    
-    
-    
 }
 
 extension ReminderDetailsVC {
     
-    func setNavigationItem() {
+    private func sendNotification() {
+        let body = self.reminder.title!
+        let date = self.reminder.date!
+        let time = self.reminder.time!
+        
+        let content = UNMutableNotificationContent()
+        content.title = "DOGGO"
+        content.body = body
+        content.sound = .default
+        content.badge = nil
+        
+        let currentDate = currentDateFromComponents(date: date, time: time)
+        let dateComponents = repeatOptionsForNotification(reminder: reminder, date: currentDate)
+        
+        if reminder.repeatOption == "Never" {
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: reminder.id!.uuidString,
+                                                content: content,
+                                                trigger: trigger)
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request)
+        } else {
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            let request = UNNotificationRequest(identifier: reminder.id!.uuidString,
+                                                content: content,
+                                                trigger: trigger)
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request)
+        }
+    }
+    
+    private func repeatOptionsForNotification(reminder: ReminderModel, date: Date) -> DateComponents {
+        var dateComponents = DateComponents()
+        if reminder.repeatOption == "Never" {
+            dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        } else if reminder.repeatOption == "Daily" {
+            dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+        } else if reminder.repeatOption == "Weekly" {
+            dateComponents = Calendar.current.dateComponents([.weekday, .hour, .minute], from: date)
+        } else if reminder.repeatOption == "Monthly" {
+            dateComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: date)
+        } else if reminder.repeatOption == "Every 3 Month" {
+            let next3Month = Calendar.current.date(byAdding: .month, value: 3, to: date)
+            dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: next3Month ?? Date())
+        } else if reminder.repeatOption == "Every 6 Month" {
+            let next6Month = Calendar.current.date(byAdding: .month, value: 6, to: date)
+            dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: next6Month ?? Date())
+        } else if reminder.repeatOption == "Yearly" {
+            dateComponents = Calendar.current.dateComponents([.month, .day, .hour, .minute], from: date)
+        }
+        return dateComponents
+    }
+    
+    private func currentDateFromComponents(date: Date, time: Date) -> Date {
+        let componentsFromDate = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let componentsFromTime = Calendar.current.dateComponents([.hour, .minute], from: time)
+        var edetedDateFromComponents = DateComponents()
+        edetedDateFromComponents.year = componentsFromDate.year
+        edetedDateFromComponents.month = componentsFromDate.month
+        edetedDateFromComponents.day = componentsFromDate.day
+        edetedDateFromComponents.hour = componentsFromTime.hour
+        edetedDateFromComponents.minute = componentsFromTime.minute
+        
+        let mixedDate = Calendar.current.date(from: edetedDateFromComponents)
+        
+        return mixedDate!
+    }
+    
+    private func setNavigationItem() {
         navigationItem.title = "Deteils"
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
         
@@ -47,6 +111,7 @@ extension ReminderDetailsVC {
     }
     
     @objc private func saveDidTap() {
+        sendNotification()
         saveData(reminder: reminder)
         navigationController?.popViewController(animated: true)
     }
@@ -159,6 +224,9 @@ extension ReminderDetailsVC: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PrototypeDetailsTableCell.self)", for: indexPath) as? PrototypeDetailsTableCell
             cell?.setupTextFieldPlaceHolder(indexPath: indexPath)
+            
+            
+            
             if isEdit == false{
                 cell?.delegateTitle = self
                 cell?.delegateBody = self

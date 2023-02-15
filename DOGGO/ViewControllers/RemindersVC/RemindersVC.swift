@@ -25,7 +25,7 @@ final class RemindersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        permissionNotificationCenter()
         setNavigationItem()
         registerCell()
     }

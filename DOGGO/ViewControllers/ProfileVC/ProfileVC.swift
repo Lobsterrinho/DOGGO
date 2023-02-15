@@ -15,26 +15,33 @@ final class ProfileVC: UIViewController {
             nameTextField.delegate = self
         }
     }
-    @IBOutlet private weak var birthdayTextField: UITextField! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet private weak var birthdayTextField: UITextField!
     @IBOutlet private weak var weightTextField: UITextField!  {
         didSet {
             nameTextField.delegate = self
         }
     }
-    @IBOutlet private weak var appIconImageView: UIImageView! {
-        didSet {
-            appIconImageView.layer.cornerRadius = 15.0
-        }
-    }
     @IBOutlet private weak var avatarImageView: UIImageView! {
         didSet {
             avatarImageView.isUserInteractionEnabled = false
-            avatarImageView.layer.borderWidth = 3.0
-            avatarImageView.layer.cornerRadius = 15.0
+            avatarImageView.layer.cornerRadius = 30.0
+        }
+    }
+    
+    @IBOutlet private weak var placeHolderView: UIView! {
+        didSet {
+            placeHolderView.layer.cornerRadius = 30.0
+            placeHolderView.layer.borderColor = UIColor.selectedItem.cgColor
+            placeHolderView.layer.borderWidth = 5.0
+        }
+    }
+    
+    @IBOutlet private var internalHolders: [UIView]! {
+        didSet {
+            internalHolders.forEach { view in
+                view.layer.cornerRadius = 30.0
+                view.backgroundColor = .selectedItem
+            }
         }
     }
     
@@ -52,6 +59,11 @@ final class ProfileVC: UIViewController {
         setupBarItem()
         addDoneButtonOnKeyboard()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadUserInfo()
     }
     
 }
@@ -82,9 +94,10 @@ extension ProfileVC {
     
     @objc private func dateDidChanged(_ sender: UIDatePicker) {
         let selectedDate = sender.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        birthdayTextField.text = dateFormatter.string(from: selectedDate)
+        let nowDate = Date()
+        let yearsFromBirth: Float = Float(((nowDate.timeIntervalSince(selectedDate)
+                                    / 3600) / 24) / 365)
+        birthdayTextField.text = String(format: "%.1f", yearsFromBirth) + " Years"
     }
     
     private func setupBarItem() {
@@ -119,7 +132,7 @@ extension ProfileVC {
               let weight = weightTextField.text, !weight.isEmpty,
               let image = avatarImageView.image?.jpegData(compressionQuality: 1)
         else { return }
-        let modelProfile = Profile(dogAvatar: image, dogName: name, dogAge: birthday, dogWeight: weight)
+        let modelProfile = Profile(dogAvatar: image, dogName: name, dogAge: birthday, dogWeight: weight + " KG")
         if let jsonData = try? JSONEncoder().encode(modelProfile) {
             let jsonDescription = String(data: jsonData, encoding: .utf8)
             let ud = UserDefaults.standard

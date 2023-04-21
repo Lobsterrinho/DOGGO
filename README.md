@@ -8,7 +8,7 @@
 * GCD
 * RestAPI, URLSession
 * CocoaPods, FSCalendar
-    ---
+ ---
 ## Presentation
 <img width="816" alt="Profile" src="https://user-images.githubusercontent.com/114474821/233591336-3619f63c-fb87-4614-a259-3a0aabf4b045.png">
 

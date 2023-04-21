@@ -104,7 +104,7 @@ extension ReminderDetailsVC {
     }
     
     private func setNavigationItem() {
-        navigationItem.title = "Deteils"
+        navigationItem.title = "Details"
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveDidTap))
         
         navigationItem.rightBarButtonItem = saveButton
